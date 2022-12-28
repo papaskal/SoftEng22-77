@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ntua/SoftEng22-77/issues"
   },
-  "homepage": "https://github.com/ntua/SoftEng22-77#readme"
+  "homepage": "https://github.com/ntua/SoftEng22-77#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.2"
+  }
 }
