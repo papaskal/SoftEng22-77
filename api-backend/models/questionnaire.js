@@ -2,20 +2,20 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const QuestionnaireSchema = new Schema({
-    questionnaireID : String,
+    questionnaireID: String,
     questionnaireTitle: String,
-    keywords : [String],
+    keywords: [String],
     questions: [
         {
-            qID : String,
-            qtext : String,
-            required : {type: String},
-            type : {type: String},
-            options : [
+            qID: String,
+            qtext: String,
+            required: { type: String },
+            type: { type: String },
+            options: [
                 {
-                    optID : String,
-                    opttxt : String,
-                    nextqID : String
+                    optID: String,
+                    opttxt: String,
+                    nextqID: String
                 }
             ]
         }

@@ -5,10 +5,13 @@ const mongoose = require('mongoose')
 const multer = require('multer')
 
 const Questionnaire = require('./models/questionnaire')
+const Answerraire = require('./models/answerraire')
 const healthcheck = require("./healthcheck")
 const questionnaire_upd = require('./questionnaire_upd')
+const resetall = require('./resetall')
 
 
+mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost:27017/intelliq', {
     useNewUrlParser: true,
     // useCreateIndex: true,
@@ -50,5 +53,13 @@ app.get('/admin/healthcheck', (req, res) => {
 
 app.post('/admin/questionnaire_upd', async (req, res) => {
     const result = await questionnaire_upd(req)
-    res.sendStatus(result)  
+    res.sendStatus(result)
 })
+
+
+app.post('/admin/resetall', async (req, res) => {
+    const result = await resetall()
+    res.sendStatus(result)
+})
+
+
