@@ -10,6 +10,7 @@ const healthcheck = require("./healthcheck")
 const questionnaire_upd = require('./questionnaire_upd')
 const resetall = require('./resetall')
 const resetq = require("./resetq")
+const getquestionnaire = require("./getquestionnaire")
 
 mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost:27017/intelliq', {
@@ -46,24 +47,30 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/admin/healthcheck', (req, res) => {
+app.get('/intelliq_api/admin/healthcheck', (req, res) => {
     res.send(healthcheck(db))
 })
 
 
-app.post('/admin/questionnaire_upd', async (req, res) => {
+app.post('/intelliq_api/admin/questionnaire_upd', async (req, res) => {
     const result = await questionnaire_upd(req)
     res.sendStatus(result)
 })
 
 
-app.post('/admin/resetall', async (req, res) => {
+app.post('/intelliq_api/admin/resetall', async (req, res) => {
     const result = await resetall()
     res.sendStatus(result)
 })
 
 
-app.post('/admin/resetq/:questionnaireID', async (req, res) => {
+app.post('/intelliq_api/admin/resetq/:questionnaireID', async (req, res) => {
     const result = await resetq(req.params.questionnaireID)
     res.sendStatus(result)
+})
+
+
+app.get('/intelliq_api/questionnaire/:questionnaireID', async (req, res) => {
+    const result = await getquestionnaire(req.params.questionnaireID)
+    res.send(result)
 })
