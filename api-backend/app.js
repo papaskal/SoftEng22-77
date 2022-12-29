@@ -9,7 +9,7 @@ const Answerraire = require('./models/answerraire')
 const healthcheck = require("./healthcheck")
 const questionnaire_upd = require('./questionnaire_upd')
 const resetall = require('./resetall')
-
+const resetq = require("./resetq")
 
 mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost:27017/intelliq', {
@@ -63,3 +63,7 @@ app.post('/admin/resetall', async (req, res) => {
 })
 
 
+app.post('/admin/resetq/:questionnaireID', async (req, res) => {
+    const result = await resetq(req.params.questionnaireID)
+    res.sendStatus(result)
+})
