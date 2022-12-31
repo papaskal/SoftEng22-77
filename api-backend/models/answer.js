@@ -5,7 +5,8 @@ const AnswerSchema = new Schema({
     questionnaireID: String,
     session: String,
     qID: String,
-    ans: String
-})
+    ans: String,
+},
+    { timestamps: true })
 
 module.exports = mongoose.model('Answer', AnswerSchema)
