@@ -20,6 +20,7 @@ const QuestionnaireSchema = new Schema({
             ]
         }
     ]
-})
+},
+    { timestamps: true })
 
 module.exports = mongoose.model('Questionnaire', QuestionnaireSchema)

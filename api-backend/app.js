@@ -16,6 +16,7 @@ const getquestion = require("./getquestion")
 const doanswer = require("./doanswer")
 const getsessionanswers = require("./getsessionanswers")
 const getquestionanswers = require("./getquestionanswers")
+const getallquestionnaires = require("./getallquestionnaires")
 
 
 mongoose.set('strictQuery', true)
@@ -102,5 +103,11 @@ app.get('/intelliq_api/getsessionanswers/:questionnaireID/:session', async (req,
 
 app.get('/intelliq_api/getquestionanswers/:questionnaireID/:questionID', async (req, res) => {
     const result = await getquestionanswers(req.params)
+    res.send(result)
+})
+
+
+app.get('/intelliq_api/getallquestionnaires', async (req, res) => {
+    const result = await getallquestionnaires()
     res.send(result)
 })
