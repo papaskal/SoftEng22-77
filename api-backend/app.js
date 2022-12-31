@@ -17,6 +17,7 @@ const doanswer = require("./doanswer")
 const getsessionanswers = require("./getsessionanswers")
 const getquestionanswers = require("./getquestionanswers")
 const getallquestionnaires = require("./getallquestionnaires")
+const getallsessions = require("./getallsessions")
 
 
 mongoose.set('strictQuery', true)
@@ -72,13 +73,13 @@ app.post('/intelliq_api/admin/resetall', async (req, res) => {
 
 
 app.post('/intelliq_api/admin/resetq/:questionnaireID', async (req, res) => {
-    const result = await resetq(req.params.questionnaireID)
+    const result = await resetq(req.params)
     res.sendStatus(result)
 })
 
 
 app.get('/intelliq_api/questionnaire/:questionnaireID', async (req, res) => {
-    const result = await getquestionnaire(req.params.questionnaireID)
+    const result = await getquestionnaire(req.params)
     res.send(result)
 })
 
@@ -109,5 +110,11 @@ app.get('/intelliq_api/getquestionanswers/:questionnaireID/:questionID', async (
 
 app.get('/intelliq_api/getallquestionnaires', async (req, res) => {
     const result = await getallquestionnaires()
+    res.send(result)
+})
+
+
+app.get('/intelliq_api/getallsessions/:questionnaireID', async (req, res) => {
+    const result = await getallsessions(req.params)
     res.send(result)
 })
