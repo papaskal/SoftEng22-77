@@ -14,11 +14,11 @@ const Questionnaire = require('./models/questionnaire')
 //     return result
 // }
 
-const getQuestionnaire = async (quaireID) => {
+const getquestionnaire = async (quaireID) => {
     const questionnaire = await Questionnaire.findOne({ questionnaireID: quaireID })
     const { questionnaireID, questionnaireTitle, keywords } = questionnaire
     const questions = questionnaire.questions.map(x => ({ qID: x.qID, qtext: x.qtext, required: x.required, type: x.type }))
     return { questionnaireID, questionnaireTitle, keywords, questions }
 }
 
-module.exports = getQuestionnaire
+module.exports = getquestionnaire
