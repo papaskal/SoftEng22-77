@@ -14,6 +14,8 @@ const resetq = require("./resetq")
 const getquestionnaire = require("./getquestionnaire")
 const getquestion = require("./getquestion")
 const doanswer = require("./doanswer")
+const getsessionanswers = require("./getsessionanswers")
+
 
 mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost:27017/intelliq', {
@@ -89,3 +91,4 @@ app.post('/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID
     const result = await doanswer(req.params)
     res.sendStatus(result)
 })
+

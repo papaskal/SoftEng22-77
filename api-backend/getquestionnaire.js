@@ -18,6 +18,7 @@ const getquestionnaire = async (quaireID) => {
     const questionnaire = await Questionnaire.findOne({ questionnaireID: quaireID })
     const { questionnaireID, questionnaireTitle, keywords } = questionnaire
     const questions = questionnaire.questions.map(x => ({ qID: x.qID, qtext: x.qtext, required: x.required, type: x.type }))
+    questions.sort((x, y) =>  (x.qID > y.qID) ? 1 : -1 )
     return { questionnaireID, questionnaireTitle, keywords, questions }
 }
 
