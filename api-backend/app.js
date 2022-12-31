@@ -6,11 +6,13 @@ const multer = require('multer')
 
 const Questionnaire = require('./models/questionnaire')
 const Answerraire = require('./models/answerraire')
+const Answer = require('./models/answer')
 const healthcheck = require("./healthcheck")
 const questionnaire_upd = require('./questionnaire_upd')
 const resetall = require('./resetall')
 const resetq = require("./resetq")
 const getquestionnaire = require("./getquestionnaire")
+const doanswer = require("./doanswer")
 
 mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost:27017/intelliq', {
@@ -33,8 +35,8 @@ app.use(multer().array())
 
 https.createServer(
     {
-        key: fs.readFileSync("server.key"),
-        cert: fs.readFileSync("server.cert"),
+        key: fs.readFileSync("./server.key"),
+        cert: fs.readFileSync("./server.cert"),
     },
     app
 ).listen(9103, () => {
@@ -73,4 +75,10 @@ app.post('/intelliq_api/admin/resetq/:questionnaireID', async (req, res) => {
 app.get('/intelliq_api/questionnaire/:questionnaireID', async (req, res) => {
     const result = await getquestionnaire(req.params.questionnaireID)
     res.send(result)
+})
+
+
+app.post('/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID', async (req, res) => {
+    const result = await doanswer(req.params)
+    res.sendStatus(result)
 })
