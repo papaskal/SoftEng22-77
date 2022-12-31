@@ -4,7 +4,6 @@ const Schema = mongoose.Schema
 const AnswerraireSchema = new Schema({
     questionnaireID: String,
     session: String,
-    keywords: [String],
     answers: [
         {
             qID: String,
