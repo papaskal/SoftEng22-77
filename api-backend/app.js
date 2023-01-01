@@ -18,6 +18,7 @@ const getsessionanswers = require("./getsessionanswers")
 const getquestionanswers = require("./getquestionanswers")
 const getallquestionnaires = require("./getallquestionnaires")
 const getallsessions = require("./getallsessions")
+const submitanswers = require("./submitanswers")
 
 
 mongoose.set('strictQuery', true)
@@ -61,7 +62,7 @@ app.get('/intelliq_api/admin/healthcheck', (req, res) => {
 
 
 app.post('/intelliq_api/admin/questionnaire_upd', async (req, res) => {
-    const result = await questionnaire_upd(req)
+    const result = await questionnaire_upd(req.body)
     res.sendStatus(result)
 })
 
@@ -117,4 +118,10 @@ app.get('/intelliq_api/getallquestionnaires', async (req, res) => {
 app.get('/intelliq_api/getallsessions/:questionnaireID', async (req, res) => {
     const result = await getallsessions(req.params)
     res.send(result)
+})
+
+
+app.post('/intelliq_api/submitanswers/:questionnaireID', async (req, res) => {
+    const result = await submitanswers(req.params, req.body)
+    res.sendStatus(result)
 })
