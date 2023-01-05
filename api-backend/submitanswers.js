@@ -25,14 +25,26 @@ const generatesession = async (questionnaireID) => {
 }
 
 
-const submitanswers = async ({ questionnaireID }, { file }) => {
-    const answers = JSON.parse(file)
+// const submitanswers = async ({ questionnaireID }, { data }) => {
+//     const answers = JSON.parse(data)
+//     const session = await generatesession(questionnaireID)
+//     for (const q in answers) {
+//         var result = await doanswer({ questionnaireID, questionID: q, session, optionID: answers[q] })
+//     }
+
+//     return result
+// }
+
+const submitanswers = async ({ questionnaireID }, { data }) => {
+    const answers = JSON.parse(data)
     const session = await generatesession(questionnaireID)
-    for (const q in answers) {
-        var result = await doanswer({ questionnaireID, questionID: q, session, optionID: answers[q] })
+    console.log(answers)
+    for (const answer of answers) {
+        var result = await doanswer({ questionnaireID, questionID: answer.questionID, session, optionID: answer.optionID })
     }
 
     return result
 }
+
 
 module.exports = submitanswers

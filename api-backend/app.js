@@ -109,13 +109,13 @@ app.get('/intelliq_api/getquestionanswers/:questionnaireID/:questionID', async (
 })
 
 
-app.get('/intelliq_api/getallquestionnaires', async (req, res) => {
+app.get('/intelliq_api/allquestionnaires', async (req, res) => {
     const result = await getallquestionnaires()
     res.send(result)
 })
 
 
-app.get('/intelliq_api/getallsessions/:questionnaireID', async (req, res) => {
+app.get('/intelliq_api/allsessions/:questionnaireID', async (req, res) => {
     const result = await getallsessions(req.params)
     res.send(result)
 })
