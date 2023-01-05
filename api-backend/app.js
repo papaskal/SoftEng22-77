@@ -60,6 +60,12 @@ app.use((req, res, next) => {
 })
 
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    next()
+})
+
+
 app.get('/intelliq_api/admin/healthcheck', (req, res) => {
     res.send(healthcheck(db))
 })
