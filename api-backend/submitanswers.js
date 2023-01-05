@@ -38,7 +38,7 @@ const generatesession = async (questionnaireID) => {
 const submitanswers = async ({ questionnaireID }, { data }) => {
     const answers = JSON.parse(data)
     const session = await generatesession(questionnaireID)
-    console.log(answers)
+    
     for (const answer of answers) {
         var result = await doanswer({ questionnaireID, questionID: answer.questionID, session, optionID: answer.optionID })
     }

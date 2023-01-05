@@ -35,10 +35,13 @@ db.once("open", () => {
     console.log("Database connected")
 })
 
+
 const app = express()
+
 
 app.use(express.urlencoded({ extended: true }))
 app.use(multer().array())
+
 
 https.createServer(
     {
@@ -51,8 +54,9 @@ https.createServer(
 })
 
 
-app.get('/', (req, res) => {
-    res.send('home')
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`)
+    next()
 })
 
 
