@@ -1,32 +1,18 @@
 import './App.css'
-import { getallquestionnaires } from './api'
-import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './components/Home'
+import Survey from './components/Survey'
 
 function App() {
-  const [questionnaires, setQuestionnaires] = useState([])
-
-  const fetchQuestionnaires = async () => {
-    const res = await getallquestionnaires()
-    setQuestionnaires(res.data)
-
-  }
-
-  useEffect(() => {
-    fetchQuestionnaires()
-  }, [])
 
   return (
-    <div>
-      <ul>
-        {questionnaires.map((questionnaire) => {
-          return (
-            <li key={questionnaire.questionnaireID}>
-              {questionnaire.questionnaireTitle}
-            </li>
-          )
-        })}
-      </ul>
-    </div>
+    <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/survey/:questionnaireID' element={<Survey />} />
+        </Routes>
+    </Router>
+    
   )
 }
 
