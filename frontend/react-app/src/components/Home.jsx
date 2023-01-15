@@ -1,5 +1,6 @@
 import { getallquestionnaires } from '../api'
 import { useState, useEffect } from 'react'
+import QuestionnaireList from './QuestionnaireList'
 
 function Home() {
   const [questionnaires, setQuestionnaires] = useState([])
@@ -16,15 +17,7 @@ function Home() {
 
   return (
     <div>
-      <ul>
-        {questionnaires.map((questionnaire) => {
-          return (
-            <li key={questionnaire.questionnaireID}>
-              {questionnaire.questionnaireTitle}
-            </li>
-          )
-        })}
-      </ul>
+      < QuestionnaireList questionnaires={questionnaires} />
     </div>
   )
 }
