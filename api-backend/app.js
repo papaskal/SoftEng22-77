@@ -84,9 +84,10 @@ app.options("/*", function(req, res, next){
   })
 
 
-app.get('/intelliq_api/admin/healthcheck', (req, res) => {
-    res.send(healthcheck(db))
-})
+app.get('/intelliq_api/admin/healthcheck', catchAsync(async (req, res) => {
+    const result = await healthcheck(db)
+    res.send(result)
+}))
 
 
 app.post('/intelliq_api/admin/questionnaire_upd', upload.single('file'), catchAsync(async (req, res) => {
