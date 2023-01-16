@@ -114,7 +114,7 @@ app.get('/intelliq_api/questionnaire/:questionnaireID', catchAsync(async (req, r
 
 
 app.get('/intelliq_api/question/:questionnaireID/:questionID', catchAsync(async (req, res) => {
-    const result = await getquestion(req.params)
+    const result = await getquestion(req.params, req.query)
     res.send(result)
 }))
 
