@@ -7,18 +7,18 @@ const multer = require('multer')
 const Questionnaire = require('./models/questionnaire')
 const Answerraire = require('./models/answerraire')
 const Answer = require('./models/answer')
-const healthcheck = require("./healthcheck")
-const questionnaire_upd = require('./questionnaire_upd')
-const resetall = require('./resetall')
-const resetq = require("./resetq")
-const getquestionnaire = require("./getquestionnaire")
-const getquestion = require("./getquestion")
-const doanswer = require("./doanswer")
-const getsessionanswers = require("./getsessionanswers")
-const getquestionanswers = require("./getquestionanswers")
-const getallquestionnaires = require("./getallquestionnaires")
-const getallsessions = require("./getallsessions")
-const submitanswers = require("./submitanswers")
+const healthcheck = require("./modules/healthcheck")
+const questionnaire_upd = require('./modules/questionnaire_upd')
+const resetall = require('./modules/resetall')
+const resetq = require("./modules/resetq")
+const getquestionnaire = require("./modules/getquestionnaire")
+const getquestion = require("./modules/getquestion")
+const doanswer = require("./modules/doanswer")
+const getsessionanswers = require("./modules/getsessionanswers")
+const getquestionanswers = require("./modules/getquestionanswers")
+const getallquestionnaires = require("./modules/getallquestionnaires")
+const getallsessions = require("./modules/getallsessions")
+const submitanswers = require("./modules/submitanswers")
 
 const catchAsync = func => {
     return (req, res, next) => {
@@ -53,8 +53,8 @@ app.use(express.json())
 
 https.createServer(
     {
-        key: fs.readFileSync("./server.key"),
-        cert: fs.readFileSync("./server.cert"),
+        key: fs.readFileSync("./ssl/server.key"),
+        cert: fs.readFileSync("./ssl/server.cert"),
     },
     app
 ).listen(9103, () => {
@@ -156,6 +156,6 @@ app.post('/intelliq_api/submitanswers/:questionnaireID', upload.array(), catchAs
 app.use((err, req, res, next) => {
     const { statusCode = 500, message = 'Something went wrong' } = err
     if (!err.message) err.message = "Oh no, something went Wrong!"
-    console.log(err.message)
-    res.status(statusCode).send('error', { err })
+    console.error(err.message)
+    res.status(statusCode).send(err.message)
 })

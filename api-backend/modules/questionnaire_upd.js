@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Questionnaire = require('./models/questionnaire')
+const Questionnaire = require('../models/questionnaire')
 
 
 const addquestionnaire = async (data) => {

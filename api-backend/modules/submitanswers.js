@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Answer = require('./models/answer')
+const Answer = require('../models/answer')
 const getallsessions = require('./getallsessions')
 const doanswer = require('./doanswer')
 
