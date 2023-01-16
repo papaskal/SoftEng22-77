@@ -9,7 +9,7 @@ function QuestionnaireList({ questionnaires }) {
                         <li key={questionnaire.questionnaireID}>
                             {questionnaire.questionnaireTitle}
                             < Link to={`/survey/${questionnaire.questionnaireID}`} >
-                                <button>HI</button>
+                                <button>{questionnaire.questionnaireID}</button>
                             </Link>
                         </li>
                     )
