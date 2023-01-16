@@ -124,13 +124,13 @@ app.post('/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID
 
 
 app.get('/intelliq_api/getsessionanswers/:questionnaireID/:session', catchAsync(async (req, res) => {
-    const result = await getsessionanswers(req.params)
+    const result = await getsessionanswers(req.params, req.query)
     res.send(result)
 }))
 
 
 app.get('/intelliq_api/getquestionanswers/:questionnaireID/:questionID', catchAsync(async (req, res) => {
-    const result = await getquestionanswers(req.params)
+    const result = await getquestionanswers(req.params, req.query)
     res.send(result)
 }))
 
