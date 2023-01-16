@@ -19,6 +19,7 @@ const getquestionanswers = require("./modules/getquestionanswers")
 const getallquestionnaires = require("./modules/getallquestionnaires")
 const getallsessions = require("./modules/getallsessions")
 const submitanswers = require("./modules/submitanswers")
+const deletequestionnaire = require('./modules/deletequestionnaire')
 
 const catchAsync = func => {
     return (req, res, next) => {
@@ -150,6 +151,12 @@ app.post('/intelliq_api/submitanswers/:questionnaireID', upload.array(), catchAs
     console.log(req.body)
     const result = await submitanswers(req.params, req.body)
     res.sendStatus(result)
+}))
+
+
+app.delete('/intelliq_api/deletequestionnaire/:questionnaireID', catchAsync(async (req, res) => {
+    const result = await deletequestionnaire(req.params)
+    res.send(result)
 }))
 
 
