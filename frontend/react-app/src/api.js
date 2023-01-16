@@ -16,4 +16,9 @@ const getquestion = async (questionnaireID, questionID) => {
   return res
 }
 
-export { getallquestionnaires, getquestionnaire, getquestion }
+const submitanswers = async (questionnaireID, answers) => {
+  const res = await axios.post(`https://localhost:9103/intelliq_api/submitanswers/${questionnaireID}`, answers)
+  return res
+}
+
+export { getallquestionnaires, getquestionnaire, getquestion, submitanswers }

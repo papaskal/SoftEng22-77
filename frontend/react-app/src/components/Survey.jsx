@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { getquestionnaire, getquestion } from "../api"
+import { getquestionnaire, getquestion, submitanswers } from "../api"
 import { useState, useEffect } from 'react'
 import QuestionnaireCover from "./QuestionnaireCover"
 import SurveyQuestion from "./SurveyQuestion"
@@ -31,8 +31,8 @@ function Survey() {
         if (ans === null) return
         setAnswers([...answers, { questionID: currentQuestion.qID, optionID: ans.optID }])
         if (ans.nextqID === '-') {
-            setFinished(true)
-            setCurrentQuestion(null)
+            
+            finish()
             return
         }
         const res = await getquestion(questionnaireID, ans.nextqID)
@@ -43,8 +43,7 @@ function Survey() {
         const questions = questionnaire.questions
         const ind = questions.findIndex((question) => question.qID === currentQuestion.qID)
         if (ind >= questions.length - 1) {
-            setFinished(true)
-            setCurrentQuestion(null)
+            finish()
             return
         }
         const curr = await getquestion(questionnaireID, questions[ind + 1].qID)
@@ -65,8 +64,13 @@ function Survey() {
         setCurrentQuestion(res.data)
     }
 
-    const finish = () => {
-
+    const finish = async () => {
+        console.log(questionnaireID)
+        console.log(answers)
+        setFinished(true)
+        setCurrentQuestion(null)
+        const res = await submitanswers(questionnaireID, answers)
+        return res
     }
 
     return (
