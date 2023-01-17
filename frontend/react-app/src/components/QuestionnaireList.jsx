@@ -31,12 +31,14 @@ function QuestionnaireList({ questionnaires }) {
             {questionnaires.map((questionnaire) => {
                 return (
                     <Card key={questionnaire.questionnaireID} className='p-3 m-3'>
-                        <Card.Title>
-                            {questionnaire.questionnaireTitle}
-                        </Card.Title>
-                        < Link to={`/survey/${questionnaire.questionnaireID}`} >
-                            <Button variant='primary'>Take this survey</Button>
-                        </Link>
+                        <Card.Body>
+                            <Card.Title>
+                                {questionnaire.questionnaireTitle}
+                            </Card.Title>
+                            < Link to={`/survey/${questionnaire.questionnaireID}`} >
+                                <Button variant='primary'>Take this survey</Button>
+                            </Link>
+                        </Card.Body>
                     </Card>
                 )
             })}

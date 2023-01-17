@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Form from 'react-bootstrap/Form'
 
 function RadioAnswer({ options, choose }) {
     const [selected, setSelected] = useState()
@@ -10,26 +11,45 @@ function RadioAnswer({ options, choose }) {
     }
 
     return (
-        <div>
-            <ul>
+        <Form className="p-3 m-3">
                 {options.map((option) => {
                     return (
-                        <li key={option.optID}>
-                            <input
+                        <div key={option.optID}>
+                            <Form.Check
                                 type="radio"
                                 id={option.optID}
                                 name='choice'
                                 value={option.optID}
                                 onChange={handleChange}
+                                label={option.opttxt}
                             />
-                            <label htmlFor={option.optID}>{option.opttxt}</label>
-                        </li>
+                        </div>
                     )
                 })}
-            </ul>
-
-        </div>
+        </Form>
     )
+
+    // return (
+    //     <div>
+    //         <ul>
+    //             {options.map((option) => {
+    //                 return (
+    //                     <li key={option.optID}>
+    //                         <input
+    //                             type="radio"
+    //                             id={option.optID}
+    //                             name='choice'
+    //                             value={option.optID}
+    //                             onChange={handleChange}
+    //                         />
+    //                         <label htmlFor={option.optID}>{option.opttxt}</label>
+    //                     </li>
+    //                 )
+    //             })}
+    //         </ul>
+
+    //     </div>
+    // )
 }
 
 export default RadioAnswer

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import QuestionnaireCover from "./QuestionnaireCover"
 import SurveyQuestion from "./SurveyQuestion"
 import QuestionnaireFinal from "./QuestionnaireFinal"
+import Container from "react-bootstrap/esm/Container"
 
 function Survey() {
     const { questionnaireID } = useParams()
@@ -74,21 +75,18 @@ function Survey() {
     }
 
     return (
-        <div>
+        <Container>
 
             <div>
                 {finished
                     ? < QuestionnaireFinal />
                     : (!currentQuestion
                         ? < QuestionnaireCover questionnaire={questionnaire} start={start} />
-                        : < SurveyQuestion question={currentQuestion} submit={submit} skip={skip} />
+                        : < SurveyQuestion question={currentQuestion} submit={submit} skip={skip} reset={reset}/>
                     )
                 }
             </div>
-            <div>
-                <button onClick={reset}>Reset</button>
-            </div>
-        </div>
+        </Container>
     )
 }
 

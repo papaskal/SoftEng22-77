@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Form from 'react-bootstrap/Form'
 
 function TextAnswer({ choose }) {
     const [text, setText] = useState('')
@@ -12,13 +13,23 @@ function TextAnswer({ choose }) {
 
     return (
         <div>
-            <input
+            <Form.Control
                 onChange={handleTextChange}
                 type="text"
                 value={text}
             />
         </div>
     )
+
+    // return (
+    //     <div>
+    //         <input
+    //             onChange={handleTextChange}
+    //             type="text"
+    //             value={text}
+    //         />
+    //     </div>
+    // )
 }
 
 export default TextAnswer

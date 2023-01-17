@@ -1,6 +1,7 @@
 import { getallquestionnaires } from '../api'
 import { useState, useEffect } from 'react'
 import QuestionnaireList from './QuestionnaireList'
+import Container from 'react-bootstrap/esm/Container'
 
 function Home() {
   const [questionnaires, setQuestionnaires] = useState([])
@@ -16,9 +17,9 @@ function Home() {
   }, [])
 
   return (
-    <div>
+    <Container>
       < QuestionnaireList questionnaires={questionnaires} />
-    </div>
+    </Container>
   )
 }
 
