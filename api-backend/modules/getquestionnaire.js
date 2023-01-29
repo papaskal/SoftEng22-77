@@ -5,7 +5,7 @@ const { parse } = require('json2csv')
 
 const getquestionnaire = async ({ questionnaireID }, { format }) => {
     const questionnaire = await Questionnaire.findOne({ questionnaireID })
-    if (!questionnaire) throw ({ statusCode: 400, message: 'Not found' })
+    if (!questionnaire) throw ({ statusCode: 400, message: 'Questionnaire does not exist.' })
 
     const { questionnaireTitle, keywords } = questionnaire
     const questions = questionnaire.questions.map(x => ({ qID: x.qID, qtext: x.qtext, required: x.required, type: x.type }))

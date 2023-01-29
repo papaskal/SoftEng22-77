@@ -4,9 +4,9 @@ const Questionnaire = require('../models/questionnaire')
 
 const deletequestionnaire = async ({ questionnaireID }) => {
     const res = await Questionnaire.deleteOne({ questionnaireID })
-    if (res.deletedCount === 0) throw ({ message: "Questionnaire doesn't exist", statusCode: 400 })
-    // await Answer.deleteMany({ questionnaireID })
-    return "Questionnaire deleted"
+    if (res.deletedCount === 0) throw ({ message: "Questionnaire does not exist.", statusCode: 400 })
+    
+    return "Questionnaire deleted successfully."
 }
 
 module.exports = deletequestionnaire

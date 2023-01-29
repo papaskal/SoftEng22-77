@@ -3,11 +3,11 @@ const Questionnaire = require('../models/questionnaire')
 const Answerraire = require('../models/answerraire')
 const Answer = require('../models/answer')
 
-const resetDB = async () => {
+const resetall = async () => {
     await Questionnaire.deleteMany({})
     await Answerraire.deleteMany({})
     await Answer.deleteMany({})
-    return 200
+    return { "status": "OK" }
 }
 
-module.exports = resetDB
+module.exports = resetall

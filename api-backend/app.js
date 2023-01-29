@@ -91,20 +91,21 @@ app.get('/intelliq_api/admin/healthcheck', catchAsync(async (req, res) => {
 
 
 app.post('/intelliq_api/admin/questionnaire_upd', upload.single('file'), catchAsync(async (req, res) => {
+    if (!req.file) throw ({ statusCode: 400, message: 'No file sent.' })
     const result = await questionnaire_upd(req.file.buffer)
-    res.sendStatus(result)
+    res.send(result)
 }))
 
 
 app.post('/intelliq_api/admin/resetall', catchAsync(async (req, res) => {
     const result = await resetall()
-    res.sendStatus(result)
+    res.send(result)
 }))
 
 
 app.post('/intelliq_api/admin/resetq/:questionnaireID', catchAsync(async (req, res) => {
     const result = await resetq(req.params)
-    res.sendStatus(result)
+    res.send(result)
 }))
 
 
@@ -122,7 +123,7 @@ app.get('/intelliq_api/question/:questionnaireID/:questionID', catchAsync(async 
 
 app.post('/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID', catchAsync(async (req, res) => {
     const result = await doanswer(req.params)
-    res.sendStatus(result)
+    res.send(result)
 }))
 
 
@@ -153,7 +154,7 @@ app.get('/intelliq_api/allsessions/:questionnaireID', catchAsync(async (req, res
 app.post('/intelliq_api/submitanswers/:questionnaireID', upload.array(), catchAsync(async (req, res) => {
     console.log(req.body)
     const result = await submitanswers(req.params, req.body)
-    res.sendStatus(result)
+    res.send(result)
 }))
 
 
@@ -165,7 +166,7 @@ app.delete('/intelliq_api/deletequestionnaire/:questionnaireID', catchAsync(asyn
 
 app.use((err, req, res, next) => {
     const { statusCode = 500, message = 'Something went wrong' } = err
-    if (!err.message) err.message = "Oh no, something went Wrong!"
     console.error(err.message)
+    if ( statusCode == 500 ) err.message = "Oh no, something went wrong!"
     res.status(statusCode).send(err.message)
 })
