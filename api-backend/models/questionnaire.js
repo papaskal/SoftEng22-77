@@ -8,7 +8,7 @@ const QuestionnaireSchema = new Schema({
     questions: {
         type: [
             {
-                qID: { type: String, required: true, unique: true, validate: (value) => value != '-' },
+                qID: { type: String, required: true, validate: (value) => value != '-' },
                 qtext: { type: String, required: true },
                 required: { type: String, required: true },
                 type: { type: String, required: true },

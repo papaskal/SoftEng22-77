@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const multer = require('multer')
 
 const Questionnaire = require('./models/questionnaire')
-const Answerraire = require('./models/answerraire')
 const Answer = require('./models/answer')
 const healthcheck = require("./modules/healthcheck")
 const questionnaire_upd = require('./modules/questionnaire_upd')
@@ -152,7 +151,7 @@ app.get('/intelliq_api/allsessions/:questionnaireID', catchAsync(async (req, res
 
 
 app.post('/intelliq_api/submitanswers/:questionnaireID', upload.array(), catchAsync(async (req, res) => {
-    console.log(req.body)
+    // console.log(JSON.stringify(req.body, null, 4))
     // console.log(req)
     const result = await submitanswers(req.params, req.body)
     res.send(result)
@@ -167,7 +166,7 @@ app.delete('/intelliq_api/deletequestionnaire/:questionnaireID', catchAsync(asyn
 
 app.use((err, req, res, next) => {
     const { statusCode = 500, message = 'Something went wrong' } = err
-    console.error(err.message)
+    console.error(`ERROR: ${err.message}`)
     if ( statusCode == 500 ) err.message = "Oh no, something went wrong!"
     res.status(statusCode).send(err.message)
 })

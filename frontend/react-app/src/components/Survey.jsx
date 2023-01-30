@@ -33,7 +33,7 @@ function Survey() {
         return function cleanup() {
             if (finished) setCurrentQuestion(null)
         }
-    })
+    }, [finished])
 
     const submit = async (ans) => {
         console.log(ans)
