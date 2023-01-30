@@ -25,6 +25,16 @@ function Survey() {
         fetchQuestionnaire(questionnaireID)
     }, [])
 
+    useEffect(() => {
+        console.log("EFFECT")
+        if (finished && currentQuestion) {
+            submitanswers(questionnaireID, answers)
+        }
+        return function cleanup() {
+            if (finished) setCurrentQuestion(null)
+        }
+    })
+
     const submit = async (ans) => {
         console.log(ans)
         console.log(answers)
@@ -32,7 +42,7 @@ function Survey() {
         if (ans === null) return
         setAnswers([...answers, { questionID: currentQuestion.qID, optionID: ans.optID }])
         if (ans.nextqID === '-') {
-            
+
             finish()
             return
         }
@@ -69,9 +79,10 @@ function Survey() {
         console.log(questionnaireID)
         console.log(answers)
         setFinished(true)
-        setCurrentQuestion(null)
-        const res = await submitanswers(questionnaireID, answers)
-        return res
+        // setCurrentQuestion(null)
+        // const res = await submitanswers(questionnaireID, answers)
+
+        // return res
     }
 
     return (
@@ -82,7 +93,7 @@ function Survey() {
                     ? < QuestionnaireFinal />
                     : (!currentQuestion
                         ? < QuestionnaireCover questionnaire={questionnaire} start={start} />
-                        : < SurveyQuestion question={currentQuestion} submit={submit} skip={skip} reset={reset}/>
+                        : < SurveyQuestion question={currentQuestion} submit={submit} skip={skip} reset={reset} />
                     )
                 }
             </div>

@@ -80,7 +80,7 @@ app.options("/*", function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    res.send(200);
+    res.sendStatus(200);
   })
 
 
@@ -153,6 +153,7 @@ app.get('/intelliq_api/allsessions/:questionnaireID', catchAsync(async (req, res
 
 app.post('/intelliq_api/submitanswers/:questionnaireID', upload.array(), catchAsync(async (req, res) => {
     console.log(req.body)
+    // console.log(req)
     const result = await submitanswers(req.params, req.body)
     res.send(result)
 }))
