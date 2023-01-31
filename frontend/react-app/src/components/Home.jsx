@@ -12,10 +12,13 @@ function Home() {
 
   }
 
+
+  // When this component is first rendered, fetch a list of available questionnaires
   useEffect(() => {
     fetchQuestionnaires()
   }, [])
 
+  
   return (
     <Container>
       < QuestionnaireList questionnaires={questionnaires} />

@@ -11,8 +11,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/survey/:questionnaireID' element={<Survey />} />
         </Routes>
-    </Router>
-    
+    </Router> 
   )
 }
 

@@ -20,20 +20,21 @@ const getallsessions = require("./modules/getallsessions")
 const submitanswers = require("./modules/submitanswers")
 const deletequestionnaire = require('./modules/deletequestionnaire')
 
+
+// Wrapper to catch and forward errors
 const catchAsync = func => {
     return (req, res, next) => {
         func(req, res, next).catch(next)
     }
 }
 
+
+// DBMS initialization
 mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost:27017/intelliq', {
     useNewUrlParser: true,
-    // useCreateIndex: true,
     useUnifiedTopology: true
 })
-
-
 const db = mongoose.connection
 db.on('error', console.error.bind(console, "connection error:"))
 db.once("open", () => {
@@ -41,16 +42,14 @@ db.once("open", () => {
 })
 
 
+// Express initialization
 const app = express()
 const upload = multer()
-
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-// app.use(upload.array())
-// app.use(upload.single('file'))
-// app.use(upload.none())
 
 
+// https server initialization
 https.createServer(
     {
         key: fs.readFileSync("./ssl/server.key"),
@@ -62,25 +61,24 @@ https.createServer(
 })
 
 
+// Middleware to display incoming requests
 app.use((req, res, next) => {
     console.log(`Incoming request: ${req.method} ${req.url}`)
     next()
 })
 
 
+// Allow cross-origin resource sharing (CORS)
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
-    // res.header('Access-Control-Allow-Methods', 'OPTIONS, DELETE, POST, GET, PATCH, PUT')
     next()
 })
-
-
-app.options("/*", function(req, res, next){
+app.options("/*", function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     res.sendStatus(200);
-  })
+})
 
 
 app.get('/intelliq_api/admin/healthcheck', catchAsync(async (req, res) => {
@@ -151,22 +149,28 @@ app.get('/intelliq_api/allsessions/:questionnaireID', catchAsync(async (req, res
 
 
 app.post('/intelliq_api/submitanswers/:questionnaireID', upload.array(), catchAsync(async (req, res) => {
-    // console.log(JSON.stringify(req.body, null, 4))
-    // console.log(req)
     const result = await submitanswers(req.params, req.body)
     res.send(result)
 }))
 
 
-app.delete('/intelliq_api/deletequestionnaire/:questionnaireID', catchAsync(async (req, res) => {
+app.delete('/intelliq_api/admin/deletequestionnaire/:questionnaireID', catchAsync(async (req, res) => {
     const result = await deletequestionnaire(req.params)
     res.send(result)
 }))
 
 
+// This is reached iff the request does not match a valid service
+app.all('*', (req, res, next) => {
+    next({ message: 'Service not found', statusCode: 404 })
+})
+
+
+// Error handling
 app.use((err, req, res, next) => {
-    const { statusCode = 500, message = 'Something went wrong' } = err
+    const { statusCode = 500 } = err
     console.error(`ERROR: ${err.message}`)
-    if ( statusCode == 500 ) err.message = "Oh no, something went wrong!"
-    res.status(statusCode).send(err.message)
+    if (statusCode == 500) err.message = "Something went wrong"
+    const result = { status: "failed", reason: err.message }
+    res.status(statusCode).send(result)
 })

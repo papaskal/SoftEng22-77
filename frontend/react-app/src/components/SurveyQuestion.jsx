@@ -12,7 +12,6 @@ function SkippableQuestion({ question, submit, skip, reset }) {
 
     const choose = (ans) => {
         setChoice(ans)
-        console.log(ans)
     }
 
     return (
@@ -35,22 +34,6 @@ function SkippableQuestion({ question, submit, skip, reset }) {
             </Card>
         </Container>
     )
-
-    // return (
-    //     <div>
-    //         <p>
-    //             {question.qtext}
-    //         </p>
-    //         {question.options.length === 1
-    //             ? < TextAnswer choose={(text) => choose({ optID: text, nextqID: question.options[0].nextqID })} />
-    //             : < RadioAnswer options={question.options} choose={choose} />
-    //         }
-
-    //         <div></div>
-    //         {question.required.toUpperCase() === 'FALSE' && (<button onClick={skip}>Skip</button>)}
-    //         <button onClick={() => { submit(choice); setChoice(null) }}>Submit</button>
-    //     </div>
-    // )
 }
 
 export default SkippableQuestion

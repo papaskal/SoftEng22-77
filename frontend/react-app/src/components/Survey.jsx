@@ -14,19 +14,21 @@ function Survey() {
     const [currentQuestion, setCurrentQuestion] = useState(null)
     const [finished, setFinished] = useState(false)
 
+
     const fetchQuestionnaire = async (questionnaireID) => {
         const res = await getquestionnaire(questionnaireID)
         setQuestionnaire(res.data)
-        console.log(questionnaire)
     }
 
+
+    // The first time this component is rendered, fetch the questionnaire
     useEffect(() => {
-        console.log('hi')
         fetchQuestionnaire(questionnaireID)
     }, [])
 
+
+    // If finished, then submit all the answers to the server, and then cleanup
     useEffect(() => {
-        console.log("EFFECT")
         if (finished && currentQuestion) {
             submitanswers(questionnaireID, answers)
         }
@@ -35,56 +37,66 @@ function Survey() {
         }
     }, [finished])
 
-    const submit = async (ans) => {
-        console.log(ans)
-        console.log(answers)
 
+    // User clicked the submit button, to submit an answer
+    const submit = async (ans) => {
         if (ans === null) return
+
+        // Save answer
         setAnswers([...answers, { questionID: currentQuestion.qID, optionID: ans.optID }])
+        
+        // If the nextqID == '-', then the questionnaire is over
         if (ans.nextqID === '-') {
 
             finish()
             return
         }
+
+        // Fetch the next question, according to the nextqID of the option selected
         const res = await getquestion(questionnaireID, ans.nextqID)
         setCurrentQuestion(res.data)
     }
 
+
+    // User clicked the skip button, to skip a not-required question
     const skip = async () => {
         const questions = questionnaire.questions
         const ind = questions.findIndex((question) => question.qID === currentQuestion.qID)
+
+        // If this was the last question of the questionnaire, then the questionnaire is over
         if (ind >= questions.length - 1) {
             finish()
             return
         }
+
+        // Fetch the next question in order
         const curr = await getquestion(questionnaireID, questions[ind + 1].qID)
         setCurrentQuestion(curr.data)
     }
 
+
+    // User clicked the reset button, to start over the questionnaire
     const reset = () => {
-        console.log(currentQuestion)
         setAnswers([])
         setFinished(false)
         setCurrentQuestion(null)
     }
 
+
+    // User clicked start button, to start answering the questionnaire
     const start = async () => {
         const questions = questionnaire.questions
-        console.log(questions)
         const res = await getquestion(questionnaireID, questions[0].qID)
         setCurrentQuestion(res.data)
     }
 
-    const finish = async () => {
-        console.log(questionnaireID)
-        console.log(answers)
-        setFinished(true)
-        // setCurrentQuestion(null)
-        // const res = await submitanswers(questionnaireID, answers)
 
-        // return res
+    // Questionnaire has reached the end
+    const finish = async () => {
+        setFinished(true)
     }
 
+    
     return (
         <Container>
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const healthcheck = (db) => {
+    // Check db readyState per mongoDB documentation
     result = {}
     switch (db.readyState) {
         case 1:

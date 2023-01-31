@@ -10,7 +10,8 @@ function QuestionnaireFinal() {
       <Card className='bg-light'>
         <Card.Body>
           <Card.Title className='p-3 m-3'>
-            Thank you for participating in our survey!
+            <p>Your answers have been submitted.</p>
+            <p>Thank you for participating in our survey!</p>
           </Card.Title>
           <Link to='/' >
             <Button>Back to all questionnaires</Button>
@@ -20,17 +21,5 @@ function QuestionnaireFinal() {
     </Container>
   )
 }
-
-//   return (
-//     <div>
-//       <p>
-//         Thank you for participating in our survey
-//       </p>
-//       <Link to='/' >
-//         <button>Back to all questionnaires</button>
-//       </Link>
-//     </div>
-//   )
-
 
 export default QuestionnaireFinal

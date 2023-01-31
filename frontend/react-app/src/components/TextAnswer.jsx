@@ -4,9 +4,9 @@ import Form from 'react-bootstrap/Form'
 function TextAnswer({ choose }) {
     const [text, setText] = useState('')
 
+    // Control the text input
     const handleTextChange = (event) => {
         setText(event.target.value)
-        console.log(text)
         choose(event.target.value)
     }
 
@@ -20,16 +20,6 @@ function TextAnswer({ choose }) {
             />
         </div>
     )
-
-    // return (
-    //     <div>
-    //         <input
-    //             onChange={handleTextChange}
-    //             type="text"
-    //             value={text}
-    //         />
-    //     </div>
-    // )
 }
 
 export default TextAnswer
