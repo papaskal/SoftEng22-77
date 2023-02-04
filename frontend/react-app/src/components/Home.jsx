@@ -8,7 +8,7 @@ function Home() {
 
   const fetchQuestionnaires = async () => {
     const res = await getallquestionnaires()
-    setQuestionnaires(res.data)
+    setQuestionnaires(res.data.questionnaires)
 
   }
 

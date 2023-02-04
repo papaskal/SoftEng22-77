@@ -114,7 +114,7 @@ const validateAnswers = (questionnaire, answers) => {
 
 
 // Add a full set of answers for a questionnaire
-const submitanswers = async ({ questionnaireID }, answers) => {
+const submitanswers = async ({ questionnaireID }, { answers }) => {
     // If questionnaireID does not exist, throw error    
     const questionnaire = await Questionnaire.findOne({ questionnaireID })
     if (!questionnaire) throw ({ statusCode: 400, message: 'Questionnaire does not exist' })

@@ -30,7 +30,7 @@ function Survey() {
     // If finished, then submit all the answers to the server, and then cleanup
     useEffect(() => {
         if (finished && currentQuestion) {
-            submitanswers(questionnaireID, answers)
+            submitanswers(questionnaireID, { "answers": answers })
         }
         return function cleanup() {
             if (finished) setCurrentQuestion(null)
@@ -44,7 +44,7 @@ function Survey() {
 
         // Save answer
         setAnswers([...answers, { questionID: currentQuestion.qID, optionID: ans.optID }])
-        
+
         // If the nextqID == '-', then the questionnaire is over
         if (ans.nextqID === '-') {
 
@@ -96,7 +96,7 @@ function Survey() {
         setFinished(true)
     }
 
-    
+
     return (
         <Container>
 
