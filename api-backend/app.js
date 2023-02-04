@@ -34,10 +34,17 @@ mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost:27017/intelliq', {
     useNewUrlParser: true,
     useUnifiedTopology: true
-})
+}).catch((err) => console.error('Database failed to connect'))
+
 const db = mongoose.connection
-db.on('error', console.error.bind(console, "connection error:"))
-db.once("open", () => {
+// Handle database connection errors
+// db.on('error', (err) => { throw (err) })
+db.on('error', (err) => { console.error(err) })
+
+db.on('disconnected', () => {
+    console.log('Database disconnected')
+})
+db.on("open", () => {
     console.log("Database connected")
 })
 
@@ -81,82 +88,95 @@ app.options("/*", function (req, res, next) {
 })
 
 
+// Confirm db connectivity
 app.get('/intelliq_api/admin/healthcheck', catchAsync(async (req, res) => {
     const result = await healthcheck(db)
     res.send(result)
 }))
 
 
+// Add a new questionnaire to db
 app.post('/intelliq_api/admin/questionnaire_upd', upload.single('file'), catchAsync(async (req, res) => {
-    if (!req.file) throw ({ statusCode: 400, message: 'No file sent.' })
+    if (!req.file) throw ({ statusCode: 400, message: 'No file sent' })
     const result = await questionnaire_upd(req.file.buffer)
-    res.send(result)
+    res.sendStatus(result)
 }))
 
 
+// Reset database, ie delete all questionnaires and answers from the database
 app.post('/intelliq_api/admin/resetall', catchAsync(async (req, res) => {
     const result = await resetall()
     res.send(result)
 }))
 
 
+// Delete all answers to a questionnaire from the database
 app.post('/intelliq_api/admin/resetq/:questionnaireID', catchAsync(async (req, res) => {
     const result = await resetq(req.params)
     res.send(result)
 }))
 
 
+// Get general properties of a questionnaire
 app.get('/intelliq_api/questionnaire/:questionnaireID', catchAsync(async (req, res) => {
     const result = await getquestionnaire(req.params, req.query)
     res.send(result)
 }))
 
 
+// Get a question 
 app.get('/intelliq_api/question/:questionnaireID/:questionID', catchAsync(async (req, res) => {
     const result = await getquestion(req.params, req.query)
     res.send(result)
 }))
 
 
+// Add an answer to the database
 app.post('/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID', catchAsync(async (req, res) => {
     const result = await doanswer(req.params)
-    res.send(result)
+    res.sendStatus(result)
 }))
 
 
+// Get all answers of a session, sorted by qID
 app.get('/intelliq_api/getsessionanswers/:questionnaireID/:session', catchAsync(async (req, res) => {
     const result = await getsessionanswers(req.params, req.query)
     res.send(result)
 }))
 
 
+// Get all answers for a question, for all sessions, sorted alphabetically
 app.get('/intelliq_api/getquestionanswers/:questionnaireID/:questionID', catchAsync(async (req, res) => {
     const result = await getquestionanswers(req.params, req.query)
     res.send(result)
 }))
 
 
+// Get a list of all questionnaires (titles and IDs), sorted by creation date
 app.get('/intelliq_api/allquestionnaires', catchAsync(async (req, res) => {
     const result = await getallquestionnaires()
     res.send(result)
 }))
 
 
+// Get all session strings for a questionnaire, sorted alphabetically
 app.get('/intelliq_api/allsessions/:questionnaireID', catchAsync(async (req, res) => {
     const result = await getallsessions(req.params)
     res.send(result)
 }))
 
 
+// Add a full set of answers for a questionnaire
 app.post('/intelliq_api/submitanswers/:questionnaireID', upload.array(), catchAsync(async (req, res) => {
     const result = await submitanswers(req.params, req.body)
-    res.send(result)
+    res.sendStatus(result)
 }))
 
 
+// Delete a questionnaire from the database
 app.delete('/intelliq_api/admin/deletequestionnaire/:questionnaireID', catchAsync(async (req, res) => {
     const result = await deletequestionnaire(req.params)
-    res.send(result)
+    res.sendStatus(result)
 }))
 
 

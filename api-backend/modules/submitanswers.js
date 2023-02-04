@@ -20,7 +20,7 @@ const generaterandomstring = (length) => {
 // Generate a valid session string
 const generatesession = async (questionnaireID) => {
     // Fetch all current session strings for this questionnaire
-    const sessions = await getallsessions({ questionnaireID })
+    const { sessions } = await getallsessions({ questionnaireID })
 
     // Generate random 4-char long alphanumerical strings, until you generate one that is NOT an existing session
     do {
@@ -113,6 +113,7 @@ const validateAnswers = (questionnaire, answers) => {
 }
 
 
+// Add a full set of answers for a questionnaire
 const submitanswers = async ({ questionnaireID }, answers) => {
     // If questionnaireID does not exist, throw error    
     const questionnaire = await Questionnaire.findOne({ questionnaireID })
@@ -129,7 +130,7 @@ const submitanswers = async ({ questionnaireID }, answers) => {
         var result = await doanswer({ questionnaireID, questionID: answer.questionID, session, optionID: answer.optionID })
     }
 
-    return { status: "OK" }
+    return 204
 }
 
 

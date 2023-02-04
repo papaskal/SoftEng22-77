@@ -49,6 +49,7 @@ const validateQuestionnaire = (quaire) => {
 }
 
 
+// Add a new questionnaire to db
 const questionnaire_upd = async (data) => {
     // If there is no file, throw error
     if (!data) throw ({ statusCode: 400, message: 'No file provided' })
@@ -72,7 +73,7 @@ const questionnaire_upd = async (data) => {
         throw ({ statusCode: 400, message: 'A questionnaire with this questionnaireID already exists' })
     }
 
-    return { status: "OK" }
+    return 204
 }
 
 module.exports = questionnaire_upd

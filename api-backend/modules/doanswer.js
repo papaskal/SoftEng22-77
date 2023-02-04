@@ -3,6 +3,7 @@ const Questionnaire = require('../models/questionnaire')
 const Answer = require('../models/answer')
 
 
+// Add an answer to the database
 const doanswer = async ({ questionnaireID, questionID, session, optionID }) => {
     // If questionnaireID does not exist, throw error
     const questionnaire = await Questionnaire.findOne({ questionnaireID })
@@ -15,6 +16,9 @@ const doanswer = async ({ questionnaireID, questionID, session, optionID }) => {
     // If optionID does not exist, throw error
     if (question.options.length > 1 && !question.options.find(x => x.optID === optionID)) throw ({ statusCode: 400, message: 'Option does not exist' })
 
+    // If session is not 4 characters long, throw error
+    if (!session || session.length !== 4) throw ( { statusCode: 400, message: 'Session string must be 4 characters long' })
+
     // If question has already been answered in this session, throw error
     const existingAnswer = await Answer.findOne({ questionnaireID, qID: questionID, session })
     if (existingAnswer) throw ( { statusCode: 400, message: 'Question has already been answered in this session' })
@@ -23,7 +27,7 @@ const doanswer = async ({ questionnaireID, questionID, session, optionID }) => {
     const answer = new Answer({ questionnaireID, qID: questionID, session, ans: optionID })
     await answer.save()
     
-    return { status: "OK" }
+    return 204
 }
 
 module.exports = doanswer
