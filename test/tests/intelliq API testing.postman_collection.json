@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "ce242e33-c4f0-49cc-84fc-bb470d3c7e8f",
 		"name": "intelliq API testing",
-		"description": "To intelliq API είναι ένα REST API που υποστηρίζει λειτουργίες διαχείρισης της δομής έξυπνων ερωτηματολογίων, λήψης, καταχώρησης και εξαγωγής απαντήσεων.",
+		"description": "Αυτή συλλογή αποτελεί μια σειρά από test, προκειμένου να επιβεβαιωθεί η σωστή λειτουργία όλων των πτυχών του API.  \nΠριν από το τρέξιμο των test, η βάση πρέπει να αρχικοποιηθεί με τα [κατάλληλα δεδομένα](https://github.com/ntua/SoftEng22-77/tree/main/data/dumps).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23942102"
 	},
@@ -59,7 +59,123 @@
 								}
 							]
 						},
-						"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
+					},
+					"response": []
+				},
+				{
+					"name": "Get question (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/question/:questionnaireID/:questionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"question",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						},
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
+					},
+					"response": []
+				},
+				{
+					"name": "Get question (non-existing questionID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Question does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/question/:questionnaireID/:questionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"question",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q99"
+								}
+							]
+						},
+						"description": "Επιστροφή error, όταν το questionID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -105,7 +221,7 @@
 								}
 							]
 						},
-						"description": "Επιστροφή λίστας που περιέχει όλα τα session που αντισοιχούν σε γεγονάτα απάντησης του ερωτηματολογίου με ταυτοποίηση questionnaireID, ταξινομημένα αλφαβητικά σύμφωνα με το session string."
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -163,7 +279,7 @@
 								}
 							]
 						},
-						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -221,7 +337,7 @@
 								}
 							]
 						},
-						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						"description": "Επιστροφή error, όταν το questionID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -279,7 +395,7 @@
 								}
 							]
 						},
-						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -337,7 +453,7 @@
 								}
 							]
 						},
-						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						"description": "Επιστροφή error, όταν το session της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -398,7 +514,7 @@
 								}
 							]
 						},
-						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -1283,7 +1399,7 @@
 								}
 							]
 						},
-						"description": "Διαγραφή όλων των απαντήσεων του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -1330,7 +1446,7 @@
 								}
 							]
 						},
-						"description": "Διαγραφή του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+						"description": "Επιστροφή error, όταν το questionnaireID της κλήσης δεν υπάρχει στη βάση."
 					},
 					"response": []
 				},
@@ -2068,7 +2184,7 @@
 								"ausjdhgk"
 							]
 						},
-						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+						"description": "Επιστροφή error, όταν δεν υπάρχει το endpoint που καλείται."
 					},
 					"response": []
 				},
@@ -2107,11 +2223,12 @@
 								"allquestionnaires"
 							]
 						},
-						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+						"description": "Επιστροφή error, όταν καλείται υπάρχον endpoint, αλλά με λανθασμένη HTTP μέθοδο."
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Αυτός ο φάκελος περιέχει μη έγκυρες κλήσεις.\n\nΓια όλες τις κλήσεις η απάντηση πρέπει να περιέχει ένα object της ακόλουθης μορφής:\n\n| **Πεδίο** | **Τύπος** | **Περιγραφή** |\n| --- | --- | --- |\n| status | String | \"failed\" |\n| reason | String | Ένα σύντομο μήνυμα που περιγράφει το λάθος με απλά λόγια |\n\nΌλες οι απαντήσεις πρέπει να έχουν κατάλληλο HTTP κωδικό λάθους, είτε 400 ή 404, ανάλογα το λάθος."
 		},
 		{
 			"name": "Valid requests",
@@ -2152,8 +2269,7 @@
 								"admin",
 								"healthcheck"
 							]
-						},
-						"description": "Επιβεβαίωση της συνδεσιμότητας (end-to-end connectivity) μεταξύ του χρήστη και της βάσης δεδομένων."
+						}
 					},
 					"response": []
 				},
@@ -2207,8 +2323,7 @@
 							"path": [
 								"allquestionnaires"
 							]
-						},
-						"description": "Επιστροφή λίστας που περιέχει objects με τους τίτλους (questionnaireTitle) και τα IDs (questionnaireID) όλων των ερωτηματολογίων, ταξινομημένα με βάση την ημερομηνία δημιουργίας του ερωτηματολογίου."
+						}
 					},
 					"response": []
 				},
@@ -2375,8 +2490,7 @@
 									"value": "QQ001"
 								}
 							]
-						},
-						"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						}
 					},
 					"response": []
 				},
@@ -2431,8 +2545,7 @@
 									"value": "QQ001"
 								}
 							]
-						},
-						"description": "Επιστροφή λίστας που περιέχει όλα τα session που αντισοιχούν σε γεγονάτα απάντησης του ερωτηματολογίου με ταυτοποίηση questionnaireID, ταξινομημένα αλφαβητικά σύμφωνα με το session string."
+						}
 					},
 					"response": []
 				},
@@ -2504,8 +2617,7 @@
 									"value": "Q01"
 								}
 							]
-						},
-						"description": "Επιστροφή object που περιέχει τα πλήρη στοιχεία της ερώτησης questionID του ερωτηματολογίου questionnaireID. Οι επιλογές της ερώτησης (απαντήσεις) είναι ταξινομημένες ως προς το αναγνωριστικό της απάντησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						}
 					},
 					"response": []
 				},
@@ -2612,8 +2724,7 @@
 									"value": "FWkB"
 								}
 							]
-						},
-						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						}
 					},
 					"response": []
 				},
@@ -2712,8 +2823,7 @@
 									"value": "Q01"
 								}
 							]
-						},
-						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+						}
 					},
 					"response": []
 				},
@@ -2765,8 +2875,7 @@
 									"value": "Q01A1"
 								}
 							]
-						},
-						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+						}
 					},
 					"response": []
 				},
@@ -2812,8 +2921,7 @@
 									"value": "QQ001"
 								}
 							]
-						},
-						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+						}
 					},
 					"response": []
 				},
@@ -2854,8 +2962,7 @@
 								"admin",
 								"questionnaire_upd"
 							]
-						},
-						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+						}
 					},
 					"response": []
 				},
@@ -2900,8 +3007,7 @@
 									"value": "QQ003"
 								}
 							]
-						},
-						"description": "Διαγραφή όλων των απαντήσεων του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+						}
 					},
 					"response": []
 				},
@@ -2939,8 +3045,7 @@
 									"value": "QQ000"
 								}
 							]
-						},
-						"description": "Διαγραφή του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+						}
 					},
 					"response": []
 				},
@@ -2978,12 +3083,12 @@
 								"admin",
 								"resetall"
 							]
-						},
-						"description": "Αρχικοποίηση όλων των δεδομένων του συστήματος, δηλαδή ερωτηματολόγια και απαντήσεις."
+						}
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Αυτός ο φάκελος περιέχει έγκυρες κλήσεις.\n\nΌλες απαντήσεις στις κλήσεις πρέπει να έχουν HTTP κώδικό επιτυχίας, είτε 200 ή 204 ανάλογα την κλήση.\n\nΌσες απαντήσεις έχουν HTTP κωδικό 200, περιέχουν κατάλληλο object, ανάλογα με την κλήση.\n\nΌσες απαντήσεις έχουν HTTP κωδικό 204, δεν περιέχουν body."
 		}
 	],
 	"event": [
