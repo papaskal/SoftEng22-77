@@ -1,0 +1,3016 @@
+{
+	"info": {
+		"_postman_id": "ce242e33-c4f0-49cc-84fc-bb470d3c7e8f",
+		"name": "intelliq API testing",
+		"description": "To intelliq API είναι ένα REST API που υποστηρίζει λειτουργίες διαχείρισης της δομής έξυπνων ερωτηματολογίων, λήψης, καταχώρησης και εξαγωγής απαντήσεων.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23942102"
+	},
+	"item": [
+		{
+			"name": "Invalid requests",
+			"item": [
+				{
+					"name": "Get questionnaire (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/questionnaire/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"questionnaire",
+								":questionnaireID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all sessions (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/allsessions/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"allsessions",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								}
+							]
+						},
+						"description": "Επιστροφή λίστας που περιέχει όλα τα session που αντισοιχούν σε γεγονάτα απάντησης του ερωτηματολογίου με ταυτοποίηση questionnaireID, ταξινομημένα αλφαβητικά σύμφωνα με το session string."
+					},
+					"response": []
+				},
+				{
+					"name": "Get question answers (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getquestionanswers/:questionnaireID/:questionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getquestionanswers",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Get question answers (non-existing questionID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Question does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getquestionanswers/:questionnaireID/:questionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getquestionanswers",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q99"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Get session answers (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getsessionanswers/:questionnaireID/:session",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getsessionanswers",
+								":questionnaireID",
+								":session"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								},
+								{
+									"key": "session",
+									"value": "FWkB"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Get session answers (non-existing session)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Session does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getsessionanswers/:questionnaireID/:session",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getsessionanswers",
+								":questionnaireID",
+								":session"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "session",
+									"value": "nope"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Do answer (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								},
+								{
+									"key": "session",
+									"value": "nj3u"
+								},
+								{
+									"key": "optionID",
+									"value": "Q01A1"
+								}
+							]
+						},
+						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+					},
+					"response": []
+				},
+				{
+					"name": "Do answer (non-existing questionID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Question does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q99"
+								},
+								{
+									"key": "session",
+									"value": "nj3u"
+								},
+								{
+									"key": "optionID",
+									"value": "Q01A1"
+								}
+							]
+						},
+						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+					},
+					"response": []
+				},
+				{
+					"name": "Do answer (non-existing optionID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Option does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								},
+								{
+									"key": "session",
+									"value": "nj3u"
+								},
+								{
+									"key": "optionID",
+									"value": "Q01A9"
+								}
+							]
+						},
+						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+					},
+					"response": []
+				},
+				{
+					"name": "Do answer (invalid session string)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Session string must be 4 characters long\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								},
+								{
+									"key": "session",
+									"value": "asdaf"
+								},
+								{
+									"key": "optionID",
+									"value": "Q01A1"
+								}
+							]
+						},
+						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+					},
+					"response": []
+				},
+				{
+					"name": "Do answer (question already answered)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Question has already been answered in this session\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								},
+								{
+									"key": "session",
+									"value": "3YCF"
+								},
+								{
+									"key": "optionID",
+									"value": "Q01A1"
+								}
+							]
+						},
+						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"A questionnaire with this questionnaireID already exists\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/existingQuestionnaireID.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (no file sent)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"No file sent\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (invalid JSON file)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"File provided is not a valid JSON file\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/notJSON.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (missing necessary field)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"JSON provided has invalid schema\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/invalidSchema.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (field is of wrong type)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"JSON provided has invalid schema\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/wrongFieldType.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (qID is \"-\")",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"JSON provided has invalid schema\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/qidEqualDash.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (two questions with the same qID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire provided has invalid logic\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/sameQuestionID.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (questions not in alphabetical order)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire provided has invalid logic\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/wrongQuestionOrder.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (two options with the same optionID in the same question)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire provided has invalid logic\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/sameOptionID.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (options not in alphabetical order)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire provided has invalid logic\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/wrongOptionOrder.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (nextqID to non-existing question)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire provided has invalid logic\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/nonExistingNext.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire (nextqID to earlier question)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire provided has invalid logic\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/invalid/earlierNext.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Reset questionnaire (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/admin/resetq/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"resetq",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								}
+							]
+						},
+						"description": "Διαγραφή όλων των απαντήσεων του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete questionnaire (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/admin/deletequestionnaire/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"deletequestionnaire",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								}
+							]
+						},
+						"description": "Διαγραφή του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (non-existing questionnaireID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Questionnaire does not exist\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (no body)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (invalid JSON)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (data is not JSON)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (invalid answer schema)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"answers\": [\r\n        {\r\n            \"question\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (non-existing question)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"answers\": [\r\n        {\r\n            \"questionID\": \"P99\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (non-existing option)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A9\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (skipping required question)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (wrong question order)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (same question twice)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (starting from not-starting question)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (ending on not a finishing question)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers (invalid nextqID logic)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Invalid data\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Non-existing endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Service not found\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/ausjdhgk",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"ausjdhgk"
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Wrong HTTP method",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"failed\",\r",
+									"    \"reason\": \"Service not found\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/allquestionnaires",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"allquestionnaires"
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Valid requests",
+			"item": [
+				{
+					"name": "Healthcheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"OK\",\r",
+									"    \"dbconnection\": \"MongoDB database connected\"\r",
+									"}\r",
+									"\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/admin/healthcheck",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"healthcheck"
+							]
+						},
+						"description": "Επιβεβαίωση της συνδεσιμότητας (end-to-end connectivity) μεταξύ του χρήστη και της βάσης δεδομένων."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all questionnaires",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"questionnaires\": [\r",
+									"        {\r",
+									"            \"questionnaireID\": \"QQ001\",\r",
+									"            \"questionnaireTitle\": \"Εκπαίδευση και καριέρα\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"questionnaireID\": \"QQ000\",\r",
+									"            \"questionnaireTitle\": \"My first research questionnaire\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"questionnaireID\": \"QQ003\",\r",
+									"            \"questionnaireTitle\": \"Χόμπι\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"questionnaireID\": \"QQ004\",\r",
+									"            \"questionnaireTitle\": \"Οθόνες\"\r",
+									"        }\r",
+									"    ]\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/allquestionnaires",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"allquestionnaires"
+							]
+						},
+						"description": "Επιστροφή λίστας που περιέχει objects με τους τίτλους (questionnaireTitle) και τα IDs (questionnaireID) όλων των ερωτηματολογίων, ταξινομημένα με βάση την ημερομηνία δημιουργίας του ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Get questionnaire",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"questionnaireID\": \"QQ001\",\r",
+									"    \"questionnaireTitle\": \"Εκπαίδευση και καριέρα\",\r",
+									"    \"keywords\": [\r",
+									"        \"εκπαίδευση\",\r",
+									"        \"εργασία\",\r",
+									"        \"σπουδές\"\r",
+									"    ],\r",
+									"    \"questions\": [\r",
+									"        {\r",
+									"            \"qID\": \"P01\",\r",
+									"            \"qtext\": \"Σε ποια πόλη κατοικείτε;\",\r",
+									"            \"required\": \"FALSE\",\r",
+									"            \"type\": \"profile\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"P02\",\r",
+									"            \"qtext\": \"Ποια είναι ηλικία σας\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"profile\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q01\",\r",
+									"            \"qtext\": \"Πηγαίνετε σχολείο;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q02\",\r",
+									"            \"qtext\": \"Πηγαίνετε σε ιδιωτικό ή δημόσιο σχολείο;\",\r",
+									"            \"required\": \"FALSE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q03\",\r",
+									"            \"qtext\": \"Σε ποια βαθμίδα εκπαίδευσης βρίσκεστε;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q04\",\r",
+									"            \"qtext\": \"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχει το σχολείο σας;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q05\",\r",
+									"            \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με το σχολείο σας;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q06\",\r",
+									"            \"qtext\": \"Σπουδάζετε αυτή τη στιγμή σε κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q07\",\r",
+									"            \"qtext\": \"Σε τι είδους ίδρυμα σπουδάζετε;\",\r",
+									"            \"required\": \"FALSE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q08\",\r",
+									"            \"qtext\": \"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q09\",\r",
+									"            \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q10\",\r",
+									"            \"qtext\": \"Έχετε αποφοιτήσει επιτυχώς από κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q11\",\r",
+									"            \"qtext\": \"Εργάζεστε;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q12\",\r",
+									"            \"qtext\": \"Το αντικείμενο της εργασίας σας σχετίζεται με το αντικείμενο των σπουδών σας;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q13\",\r",
+									"            \"qtext\": \"Εργάζεστε;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q14\",\r",
+									"            \"qtext\": \"Ποιο είναι το επάγγελμά σας;\",\r",
+									"            \"required\": \"FALSE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q15\",\r",
+									"            \"qtext\": \"Πόσο ευχαριστημένος είστε με τις συνθήκες της εργασία σας;\",\r",
+									"            \"required\": \"TRUE\",\r",
+									"            \"type\": \"question\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q16\",\r",
+									"            \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με την εργασία σας;\",\r",
+									"            \"required\": \"FALSE\",\r",
+									"            \"type\": \"question\"\r",
+									"        }\r",
+									"    ]\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/questionnaire/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"questionnaire",
+								":questionnaireID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all sessions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"sessions\": [\r",
+									"        \"3YCF\",\r",
+									"        \"3mPs\",\r",
+									"        \"FWkB\",\r",
+									"        \"Fpmz\",\r",
+									"        \"JQcv\",\r",
+									"        \"P0lM\",\r",
+									"        \"R5pr\",\r",
+									"        \"VQyy\",\r",
+									"        \"pR3L\",\r",
+									"        \"sqrB\"\r",
+									"    ]\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/allsessions/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"allsessions",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Επιστροφή λίστας που περιέχει όλα τα session που αντισοιχούν σε γεγονάτα απάντησης του ερωτηματολογίου με ταυτοποίηση questionnaireID, ταξινομημένα αλφαβητικά σύμφωνα με το session string."
+					},
+					"response": []
+				},
+				{
+					"name": "Get question",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"questionnaireID\": \"QQ001\",\r",
+									"    \"qID\": \"Q01\",\r",
+									"    \"qtext\": \"Πηγαίνετε σχολείο;\",\r",
+									"    \"required\": \"TRUE\",\r",
+									"    \"type\": \"question\",\r",
+									"    \"options\": [\r",
+									"        {\r",
+									"            \"optID\": \"Q01A1\",\r",
+									"            \"opttxt\": \"Ναι\",\r",
+									"            \"nextqID\": \"Q02\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"optID\": \"Q01A2\",\r",
+									"            \"opttxt\": \"Όχι\",\r",
+									"            \"nextqID\": \"Q06\"\r",
+									"        }\r",
+									"    ]\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/question/:questionnaireID/:questionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"question",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τα πλήρη στοιχεία της ερώτησης questionID του ερωτηματολογίου questionnaireID. Οι επιλογές της ερώτησης (απαντήσεις) είναι ταξινομημένες ως προς το αναγνωριστικό της απάντησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Get session answers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"questionnaireID\": \"QQ001\",\r",
+									"    \"session\": \"FWkB\",\r",
+									"    \"answers\": [\r",
+									"        {\r",
+									"            \"qID\": \"P01\",\r",
+									"            \"ans\": \"Ιεράπετρα\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"P02\",\r",
+									"            \"ans\": \"P02A1\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q01\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q06\",\r",
+									"            \"ans\": \"Q06A1\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q07\",\r",
+									"            \"ans\": \"Q07A4\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q08\",\r",
+									"            \"ans\": \"Q08A4\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q09\",\r",
+									"            \"ans\": \"Τζάμπα λεφτά\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q11\",\r",
+									"            \"ans\": \"Q11A1\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q12\",\r",
+									"            \"ans\": \"Q12A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q14\",\r",
+									"            \"ans\": \"Σερβιτόρος\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q15\",\r",
+									"            \"ans\": \"Q15A4\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"qID\": \"Q16\",\r",
+									"            \"ans\": \"Είμαι σερβιτόρος\"\r",
+									"        }\r",
+									"    ]\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getsessionanswers/:questionnaireID/:session",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getsessionanswers",
+								":questionnaireID",
+								":session"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "session",
+									"value": "FWkB"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Get question answers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"questionnaireID\": \"QQ001\",\r",
+									"    \"questionID\": \"Q01\",\r",
+									"    \"answers\": [\r",
+									"        {\r",
+									"            \"session\": \"JQcv\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"pR3L\",\r",
+									"            \"ans\": \"Q01A1\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"VQyy\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"R5pr\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"sqrB\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"3YCF\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"3mPs\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"Fpmz\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"P0lM\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        },\r",
+									"        {\r",
+									"            \"session\": \"FWkB\",\r",
+									"            \"ans\": \"Q01A2\"\r",
+									"        }\r",
+									"    ]\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getquestionanswers/:questionnaireID/:questionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getquestionanswers",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						},
+						"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+					},
+					"response": []
+				},
+				{
+					"name": "Do answer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								},
+								{
+									"key": "session",
+									"value": "aU2p"
+								},
+								{
+									"key": "optionID",
+									"value": "Q01A1"
+								}
+							]
+						},
+						"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+					},
+					"response": []
+				},
+				{
+					"name": "Submit answers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						},
+						"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Add questionnaire",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/trolley.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/questionnaire_upd",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"questionnaire_upd"
+							]
+						},
+						"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+					},
+					"response": []
+				},
+				{
+					"name": "Reset questionnaire",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"OK\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/admin/resetq/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"resetq",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ003"
+								}
+							]
+						},
+						"description": "Διαγραφή όλων των απαντήσεων του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete questionnaire",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/admin/deletequestionnaire/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"deletequestionnaire",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ000"
+								}
+							]
+						},
+						"description": "Διαγραφή του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+					},
+					"response": []
+				},
+				{
+					"name": "Reset all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const expected = {\r",
+									"    \"status\": \"OK\"\r",
+									"}\r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(expected);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/admin/resetall",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"resetall"
+							]
+						},
+						"description": "Αρχικοποίηση όλων των δεδομένων του συστήματος, δηλαδή ερωτηματολόγια και απαντήσεις."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://localhost:9103/intelliq_api",
+			"type": "string"
+		}
+	]
+}
