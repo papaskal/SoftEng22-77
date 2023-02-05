@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "355ff1b2-839c-47d5-9c98-c526f8c1191c",
+		"name": "intelliq API presentation 2",
+		"description": "To intelliq API είναι ένα REST API που υποστηρίζει λειτουργίες διαχείρισης της δομής έξυπνων ερωτηματολογίων, λήψης, καταχώρησης και εξαγωγής απαντήσεων.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23942102"
+	},
+	"item": [
+		{
+			"name": "Get questionnaire (εκπαίδευση)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/questionnaire/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"questionnaire",
+						":questionnaireID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+			},
+			"response": []
+		},
+		{
+			"name": "Get question",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/question/:questionnaireID/:questionID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τα πλήρη στοιχεία της ερώτησης questionID του ερωτηματολογίου questionnaireID. Οι επιλογές της ερώτησης (απαντήσεις) είναι ταξινομημένες ως προς το αναγνωριστικό της απάντησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+			},
+			"response": []
+		},
+		{
+			"name": "Do answer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						},
+						{
+							"key": "session",
+							"value": "nj3u"
+						},
+						{
+							"key": "optionID",
+							"value": "Q01A1"
+						}
+					]
+				},
+				"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+			},
+			"response": []
+		},
+		{
+			"name": "Get session answers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/getsessionanswers/:questionnaireID/:session",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "session",
+							"value": "JQcv"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://localhost:9103/intelliq_api",
+			"type": "string"
+		}
+	]
+}

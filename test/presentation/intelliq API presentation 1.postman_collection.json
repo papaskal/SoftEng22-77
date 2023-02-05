@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "eeb2c4ea-8408-4a4a-8082-7af928b9db18",
+		"name": "intelliq API presentation 1",
+		"description": "To intelliq API είναι ένα REST API που υποστηρίζει λειτουργίες διαχείρισης της δομής έξυπνων ερωτηματολογίων, λήψης, καταχώρησης και εξαγωγής απαντήσεων.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23942102"
+	},
+	"item": [
+		{
+			"name": "Healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/admin/healthcheck",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"healthcheck"
+					]
+				},
+				"description": "Επιβεβαίωση της συνδεσιμότητας (end-to-end connectivity) μεταξύ του χρήστη και της βάσης δεδομένων."
+			},
+			"response": []
+		},
+		{
+			"name": "Get questionnaire (εκπαίδευση)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/questionnaire/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"questionnaire",
+						":questionnaireID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+			},
+			"response": []
+		},
+		{
+			"name": "Submit answers (εκπαίδευση)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"submitanswers",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Καταχώρηση λίστας απαντήσεων για ένα ερωτηματολογίου με ταυτοποίηση questionnaireID."
+			},
+			"response": []
+		},
+		{
+			"name": "Get question answers (εκπαίδευση, Q01)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/getquestionanswers/:questionnaireID/:questionID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"getquestionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+			},
+			"response": []
+		},
+		{
+			"name": "Reset all",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/admin/resetall",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"resetall"
+					]
+				},
+				"description": "Αρχικοποίηση όλων των δεδομένων του συστήματος, δηλαδή ερωτηματολόγια και απαντήσεις."
+			},
+			"response": []
+		},
+		{
+			"name": "Add questionnaire (εκπαίδευση)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "questionnaires/εκπαίδευση.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/admin/questionnaire_upd",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"questionnaire_upd"
+					]
+				},
+				"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου."
+			},
+			"response": []
+		},
+		{
+			"name": "Get questionnaire (εκπαίδευση)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/questionnaire/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"questionnaire",
+						":questionnaireID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://localhost:9103/intelliq_api",
+			"type": "string"
+		}
+	]
+}
