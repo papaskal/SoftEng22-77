@@ -1,0 +1,393 @@
+{
+    "questionnaireID": "QQ004",
+    "questionnaireTitle": "Οθόνες",
+    "keywords": [ 
+        "τηλεόραση",
+        "υπολογιστής",
+        "τεχνολογία",
+        "streaming"
+    ],
+    "questions": [
+        {
+            "qID": "P01",
+            "qtext": "Ποιο είναι το φύλο σας;",
+            "required": "FALSE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P01A1",
+                    "opttxt": "Άντρας",
+                    "nextqID": "P02"
+                },
+                {
+                    "optID": "P01A2",
+                    "opttxt": "Γυναίκα",
+                    "nextqID": "P02"
+                },
+                {
+                    "optID": "P01A3",
+                    "opttxt": "Άλλο",
+                    "nextqID": "P02"
+                }
+            ]
+        },
+        {
+            "qID": "P02",
+            "qtext": "Ποια είναι ηλικία σας",
+            "required": "FALSE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P02A1",
+                    "opttxt": "<30",
+                    "nextqID": "P03"
+                },
+                {
+                    "optID": "P02A2",
+                    "opttxt": "30-50",
+                    "nextqID": "P03"
+                },
+                {
+                    "optID": "P02A3",
+                    "opttxt": "50-70",
+                    "nextqID": "P03"
+                },
+                {
+                    "optID": "P02A4",
+                    "opttxt": ">70",
+                    "nextqID": "P03"
+                }
+            ]
+        },
+        {
+            "qID": "P03",
+            "qtext": "Είστε παντρεμένος",
+            "required": "FALSE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P03A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "P04"
+                },
+                {
+                    "optID": "P03A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "P04"
+                }
+            ]
+        },
+        {
+            "qID": "P04",
+            "qtext": "Έχετε παιδιά",
+            "required": "FALSE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P04A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "P04A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q01"
+                }
+            ]
+        },
+        {
+            "qID": "Q01",
+            "qtext": "Έχετε τηλεόραση στην κατοχή σας;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q01A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q08"
+                }
+            ]
+        },
+        {
+            "qID": "Q02",
+            "qtext": "Πόσες ώρες την ημέρα βλέπετε τηλεόραση",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q02A1",
+                    "opttxt": "Ποτέ",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "Q02A2",
+                    "opttxt": "Λιγότερο από 1 ώρα",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "Q02A3",
+                    "opttxt": "1-4 ώρες",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "Q02A4",
+                    "opttxt": "Περισσότερο από 4 ώρες",
+                    "nextqID": "Q03"
+                }
+            ]
+        },
+        {
+            "qID": "Q03",
+            "qtext": "Είστε συνδρομητής σε κάποια streaming υπηρεσία επί πληρωμή;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q03A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q04"
+                },
+                {
+                    "optID": "Q03A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q05"
+                }
+            ]
+        },
+        {
+            "qID": "Q04",
+            "qtext": "Σε ποια streaming υπηρεσία είστε συνδρομητής;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q04A1",
+                    "opttxt": "Netflix",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A2",
+                    "opttxt": "Amazon Prime Video",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A3",
+                    "opttxt": "Disney+",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A4",
+                    "opttxt": "Hulu",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A5",
+                    "opttxt": "Άλλο",
+                    "nextqID": "Q05"
+                }
+            ]
+        },
+        {
+            "qID": "Q05",
+            "qtext": "Γνωρίζετε τι είναι το Ertflix;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q05A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q06"
+                },
+                {
+                    "optID": "Q05A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q08"
+                }
+            ]
+        },
+        {
+            "qID": "Q06",
+            "qtext": "Χρησιμοποιείτε ποτέ το Ertflix;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q06A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "Q06A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q08"
+                }
+            ]
+        },
+        {
+            "qID": "Q07",
+            "qtext": "Πόσο συχνά χρησιμοποείτε το Ertflix;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q07A1",
+                    "opttxt": "Καθημερινά",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A2",
+                    "opttxt": "3-6 φορές τη βδομάδα",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A3",
+                    "opttxt": "1-2 φορές τη βδομάδα",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A4",
+                    "opttxt": "Λιγότερο από 1 φορά τη βδομάδα",
+                    "nextqID": "Q08"
+                }
+            ]
+        },
+        {
+            "qID": "Q08",
+            "qtext": "Χρησιμοποείτε υπολογιστή τακτικά στην καθημερινή σας ζωή;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q08A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q09"
+                },
+                {
+                    "optID": "Q08A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q11"
+                }
+            ]
+        },
+        {
+            "qID": "Q09",
+            "qtext": "Χρησιμοποείτε υπολογιστή στη δουλειά σας ή στον ελεύθερό σας χρόνο;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q09A1",
+                    "opttxt": "Στη δουλειά",
+                    "nextqID": "Q10"
+                },
+                {
+                    "optID": "Q09A2",
+                    "opttxt": "Στον ελεύθερό μου χρόνο",
+                    "nextqID": "Q10"
+                },
+                {
+                    "optID": "Q09A3",
+                    "opttxt": "Και τα δύο",
+                    "nextqID": "Q10"
+                }
+            ]
+        },
+        {
+            "qID": "Q10",
+            "qtext": "Πόσες ώρες την ημέρα περνάτε στον υπολογιστή;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q10A1",
+                    "opttxt": "Λιγότερο από 1 ώρα",
+                    "nextqID": "Q11"
+                },
+                {
+                    "optID": "Q10A2",
+                    "opttxt": "1-4 ώρες",
+                    "nextqID": "Q11"
+                },
+                {
+                    "optID": "Q10A3",
+                    "opttxt": "Περισσότερο από 4 ώρες",
+                    "nextqID": "Q11"
+                }
+            ]
+        },
+        {
+            "qID": "Q11",
+            "qtext": "Έχετε τάμπλετ στην κατοχή σας;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q11A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q12"
+                },
+                {
+                    "optID": "Q11A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "-"
+                }
+            ]
+        },
+        {
+            "qID": "Q12",
+            "qtext": "Τι είδους τάμπλετ έχετε;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q12A1",
+                    "opttxt": "Android",
+                    "nextqID": "Q13"
+                },
+                {
+                    "optID": "Q12A2",
+                    "opttxt": "Ipad",
+                    "nextqID": "Q13"
+                },
+                {
+                    "optID": "Q12A3",
+                    "opttxt": "Windows",
+                    "nextqID": "Q13"
+                },
+                {
+                    "optID": "Q12A4",
+                    "opttxt": "Άλλο",
+                    "nextqID": "Q13"
+                }
+            ]
+        },
+        {
+            "qID": "Q13",
+            "qtext": "Πόσες ώρες την ημέρα περνάτε στο τάμπλετ;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q13A1",
+                    "opttxt": "Λιγότερο από 1 ώρα",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "Q13A2",
+                    "opttxt": "1-4 ώρες",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "Q13A3",
+                    "opttxt": "Περισσότερο από 4 ώρες",
+                    "nextqID": "-"
+                }
+            ]
+        }
+    ]
+}

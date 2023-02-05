@@ -1,0 +1,225 @@
+{
+    "questionnaireID": "QQ001",
+    "questionnaireTitle": "The trolley problem",
+    "keywords": [
+        "trolley",
+        "morality",
+        "thought experiment"
+    ],
+    "questions": [
+        {
+            "qID": "P00",
+            "qtext": "What country do you live in?",
+            "required": "FALSE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P00TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "P01"
+                }
+            ]
+        },
+        {
+            "qID": "P01",
+            "qtext": "What is your age?",
+            "required": "TRUE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P01A1",
+                    "opttxt": "<30",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "P01A2",
+                    "opttxt": "30-50",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "P01A3",
+                    "opttxt": "50-70",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "P01A4",
+                    "opttxt": ">70",
+                    "nextqID": "Q01"
+                }
+            ]
+        },
+        {
+            "qID": "Q01",
+            "qtext": "Are you familiar with the series of thought experiments in ethics and psychology called the trolley problem?",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q01A1",
+                    "opttxt": "Yes",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A2",
+                    "opttxt": "No",
+                    "nextqID": "Q02"
+                }
+            ]
+        },
+        {
+            "qID": "Q02",
+            "qtext": "Imagine, there is a runaway trolley barreling down the railway tracks. Ahead, on the tracks, there are five people tied up and unable to move. The trolley is headed straight for them. You are a bystander standing some distance off in the train yard, next to a lever. If you pull this lever, the trolley will switch to a different set of tracks. However, you notice that there is one person on the side track. What do you do? You have two (and only two) options:",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q02A1",
+                    "opttxt": "Do nothing, in which case the trolley will kill the five people on the main track",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "Q02A2",
+                    "opttxt": "Pull the lever, diverting the trolley onto the side track where it will kill one person",
+                    "nextqID": "Q04"
+                }
+            ]
+        },
+        {
+            "qID": "Q03",
+            "qtext": "Can you explain your decision?",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q03TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "Q04"
+                }
+            ]
+        },
+        {
+            "qID": "Q04",
+            "qtext": "As before, a trolley is hurtling down a track towards five people. You are on a bridge under which it will pass, and you can stop it by putting something very heavy in front of it. As it happens, there is a very fat man next to you – your only way to stop the trolley is to push him over the bridge and onto the track, killing him to save five. Should you proceed?",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q04A1",
+                    "opttxt": "Do nothing",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A2",
+                    "opttxt": "Push the man",
+                    "nextqID": "Q05"
+                }
+            ]
+        },
+        {
+            "qID": "Q05",
+            "qtext": "Can you explain your decision?",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q05TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "Q06"
+                }
+            ]
+        },
+        {
+            "qID": "Q06",
+            "qtext": "This time, imagine you are the driver of a runaway trolley barreling down the railway tracks. Ahead, on the tracks, there are five people tied up and unable to move. The trolley is headed straight for them. You can choose to navigate the trolley to a different set of tracks. However, you notice that there is one person on the side track. What do you do? You have two (and only two) options:",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q06A1",
+                    "opttxt": "Do nothing, stay your course in which case the trolley will kill the five people on the main track",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "Q06A2",
+                    "opttxt": "Switch to the other set of tracks, diverting the trolley so that it kills one person",
+                    "nextqID": "Q07"
+                }
+            ]
+        },
+        {
+            "qID": "Q07",
+            "qtext": "Can you explain your decision?",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q07TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "Q08"
+                }
+            ]
+        },
+        {
+            "qID": "Q08",
+            "qtext": "Suppose that a judge or magistrate is faced with rioters demanding that a culprit be found for a certain crime and threatening otherwise to take their own bloody revenge on a particular section of the community. The real culprit being unknown, the judge sees himself as able to prevent the bloodshed only by framing some innocent person and having him executed. Should the judge frame an innocent person?",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q08A1",
+                    "opttxt": "Yes",
+                    "nextqID": "Q09"
+                },
+                {
+                    "optID": "Q08A2",
+                    "opttxt": "No",
+                    "nextqID": "Q09"
+                }
+            ]
+        },
+        {
+            "qID": "Q09",
+            "qtext": "Can you explain your decision?",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q09TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "Q10"
+                }
+            ]
+        },
+        {
+            "qID": "Q10",
+            "qtext": "A brilliant transplant surgeon has five patients, each in need of a different organ, each of whom will die without that organ. Unfortunately, there are no organs available to perform any of these five transplant operations. A healthy young traveler, just passing through the city the doctor works in, comes in for a routine checkup. In the course of doing the checkup, the doctor discovers that his organs are compatible with all five of his dying patients. Suppose further that if the young man were to disappear, no one would suspect the doctor. Should the doctor kill the young man in order to harvest his organs and save his five patients?",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q10A1",
+                    "opttxt": "Yes",
+                    "nextqID": "Q11"
+                },
+                {
+                    "optID": "Q10A2",
+                    "opttxt": "No",
+                    "nextqID": "Q11"
+                }
+            ]
+        },
+        {
+            "qID": "Q11",
+            "qtext": "Can you explain your decision?",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q11TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "-"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,365 @@
+{
+    "questionnaireID": "QQ001",
+    "questionnaireTitle": "Εκπαίδευση και καριέρα",
+    "keywords": [
+        "εκπαίδευση",
+        "εργασία",
+        "σπουδές"
+    ],
+    "questions": [
+        {
+            "qID": "P01",
+            "qtext": "Σε ποια πόλη κατοικείτε;",
+            "required": "FALSE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P01TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "P02"
+                }
+            ]
+        },
+        {
+            "qID": "P02",
+            "qtext": "Ποια είναι ηλικία σας",
+            "required": "TRUE",
+            "type": "profile",
+            "options": [
+                {
+                    "optID": "P02A1",
+                    "opttxt": "<30",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "P02A2",
+                    "opttxt": "30-50",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "P02A3",
+                    "opttxt": "50-70",
+                    "nextqID": "Q01"
+                },
+                {
+                    "optID": "P02A4",
+                    "opttxt": ">70",
+                    "nextqID": "Q01"
+                }
+            ]
+        },
+        {
+            "qID": "Q01",
+            "qtext": "Πηγαίνετε σχολείο;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q01A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q02"
+                },
+                {
+                    "optID": "Q01A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q06"
+                }
+            ]
+        },
+        {
+            "qID": "Q02",
+            "qtext": "Πηγαίνετε σε ιδιωτικό ή δημόσιο σχολείο;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q02A1",
+                    "opttxt": "Ιδιωτικό",
+                    "nextqID": "Q03"
+                },
+                {
+                    "optID": "Q02A2",
+                    "opttxt": "Δημόσιο",
+                    "nextqID": "Q03"
+                }
+            ]
+        },
+        {
+            "qID": "Q03",
+            "qtext": "Σε ποια βαθμίδα εκπαίδευσης βρίσκεστε;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q03A1",
+                    "opttxt": "Δημοτικό",
+                    "nextqID": "Q04"
+                },
+                {
+                    "optID": "Q03A2",
+                    "opttxt": "Γυμνάσιο",
+                    "nextqID": "Q04"
+                },
+                {
+                    "optID": "Q03A3",
+                    "opttxt": "Λύκειο",
+                    "nextqID": "Q04"
+                }
+            ]
+        },
+        {
+            "qID": "Q04",
+            "qtext": "Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχει το σχολείο σας;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q04A1",
+                    "opttxt": "Πολύ",
+                    "nextqID": "Q13"
+                },
+                {
+                    "optID": "Q04A2",
+                    "opttxt": "Μέτρια",
+                    "nextqID": "Q13"
+                },
+                {
+                    "optID": "Q04A3",
+                    "opttxt": "Λίγο",
+                    "nextqID": "Q05"
+                },
+                {
+                    "optID": "Q04A4",
+                    "opttxt": "Καθόλου",
+                    "nextqID": "Q05"
+                }
+            ]
+        },
+        {
+            "qID": "Q05",
+            "qtext": "Γιατί δεν είστε ευχαριστημένος με το σχολείο σας;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q05TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "Q13"
+                }
+            ]
+        },
+        {
+            "qID": "Q06",
+            "qtext": "Σπουδάζετε αυτή τη στιγμή σε κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q06A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q07"
+                },
+                {
+                    "optID": "Q06A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q10"
+                }
+            ]
+        },
+        {
+            "qID": "Q07",
+            "qtext": "Σε τι είδους ίδρυμα σπουδάζετε;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q07A1",
+                    "opttxt": "ΑΕΙ",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A2",
+                    "opttxt": "ΑΤΕΙ",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A3",
+                    "opttxt": "ΕΑΠ",
+                    "nextqID": "Q08"
+                },
+                {
+                    "optID": "Q07A4",
+                    "opttxt": "ΙΕΚ",
+                    "nextqID": "Q08"
+                }
+            ]
+        },
+        {
+            "qID": "Q08",
+            "qtext": "Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχεται;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q08A1",
+                    "opttxt": "Πολύ",
+                    "nextqID": "Q11"
+                },
+                {
+                    "optID": "Q08A2",
+                    "opttxt": "Μέτρια",
+                    "nextqID": "Q11"
+                },
+                {
+                    "optID": "Q08A3",
+                    "opttxt": "Λίγο",
+                    "nextqID": "Q09"
+                },
+                {
+                    "optID": "Q08A4",
+                    "opttxt": "Καθόλου",
+                    "nextqID": "Q09"
+                }
+            ]
+        },
+        {
+            "qID": "Q09",
+            "qtext": "Γιατί δεν είστε ευχαριστημένος με το επίπεδο εκπαίδευσης που σας παρέχεται;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q09TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "Q11"
+                }
+            ]
+        },
+        {
+            "qID": "Q10",
+            "qtext": "Έχετε αποφοιτήσει επιτυχώς από κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q10A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q11"
+                },
+                {
+                    "optID": "Q10A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q13"
+                }
+            ]
+        },
+        {
+            "qID": "Q11",
+            "qtext": "Εργάζεστε;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q11A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q12"
+                },
+                {
+                    "optID": "Q11A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "-"
+                }
+            ]
+        },
+        {
+            "qID": "Q12",
+            "qtext": "Το αντικείμενο της εργασίας σας σχετίζεται με το αντικείμενο των σπουδών σας;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q12A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q14"
+                },
+                {
+                    "optID": "Q12A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "Q14"
+                }
+            ]
+        },
+        {
+            "qID": "Q13",
+            "qtext": "Εργάζεστε;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q13A1",
+                    "opttxt": "Ναι",
+                    "nextqID": "Q14"
+                },
+                {
+                    "optID": "Q13A2",
+                    "opttxt": "Όχι",
+                    "nextqID": "-"
+                }
+            ]
+        },
+        {
+            "qID": "Q14",
+            "qtext": "Ποιο είναι το επάγγελμά σας;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q14TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "Q15"
+                }
+            ]
+        },
+        {
+            "qID": "Q15",
+            "qtext": "Πόσο ευχαριστημένος είστε με τις συνθήκες της εργασία σας;",
+            "required": "TRUE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q15A1",
+                    "opttxt": "Πολύ",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "Q15A2",
+                    "opttxt": "Μέτρια",
+                    "nextqID": "-"
+                },
+                {
+                    "optID": "Q15A3",
+                    "opttxt": "Λίγο",
+                    "nextqID": "Q16"
+                },
+                {
+                    "optID": "Q15A4",
+                    "opttxt": "Καθόλου",
+                    "nextqID": "Q16"
+                }
+            ]
+        },
+        {
+            "qID": "Q16",
+            "qtext": "Γιατί δεν είστε ευχαριστημένος με την εργασία σας;",
+            "required": "FALSE",
+            "type": "question",
+            "options": [
+                {
+                    "optID": "Q16TXT",
+                    "opttxt": "<open string>",
+                    "nextqID": "-"
+                }
+            ]
+        }
+    ]
+}
