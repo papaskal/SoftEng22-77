@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+
+// Confirm db connectivity
 const healthcheck = (db) => {
     // Check db readyState per mongoDB documentation
     result = {}

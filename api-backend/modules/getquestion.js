@@ -3,6 +3,7 @@ const Questionnaire = require('../models/questionnaire')
 const { parse } = require('json2csv')
 
 
+// Return a question 
 const getquestion = async ({ questionnaireID, questionID }, { format }) => {
     // If questionnaireID does not exist, throw error
     const questionnaire = await Questionnaire.findOne({ questionnaireID })

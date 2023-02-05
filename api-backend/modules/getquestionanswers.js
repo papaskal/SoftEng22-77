@@ -4,6 +4,7 @@ const Questionnaire = require('../models/questionnaire')
 const { parse } = require('json2csv')
 
 
+// Return all answers for a question, for all sessions, sorted alphabetically
 const getquestionanswers = async ({ questionnaireID, questionID }, { format }) => {
     // If questionnaireID does not exist, throw error
     const questionnaire = await Questionnaire.findOne({ questionnaireID })

@@ -4,14 +4,15 @@ const Questionnaire = require('../models/questionnaire')
 const { parse } = require('json2csv')
 
 
+// Return all answers of a session, sorted by qID
 const getsessionanswers = async ({ questionnaireID, session }, { format }) => {
     // If questionnaireID does not exist, throw error
     const questionnaire = await Questionnaire.findOne({ questionnaireID })
-    if (!questionnaire) throw ({ statusCode: 400, message: 'Questionnaire does not exist.' })
+    if (!questionnaire) throw ({ statusCode: 400, message: 'Questionnaire does not exist' })
 
     // If session does not exist, throw error
     const dbanswers = await Answer.find({ questionnaireID, session })
-    if (dbanswers.length === 0) throw ({statusCode: 400, message: 'Session does not exist.'})
+    if (dbanswers.length === 0) throw ({statusCode: 400, message: 'Session does not exist'})
 
     // Sort answers by qID
     const answers = dbanswers.map(x => ({ qID: x.qID, ans: x.ans }))

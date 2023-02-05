@@ -3,6 +3,7 @@ const fs = require("fs")
 const https = require("https")
 const mongoose = require('mongoose')
 const multer = require('multer')
+const path = require('path')
 
 const Questionnaire = require('./models/questionnaire')
 const Answer = require('./models/answer')
@@ -37,10 +38,9 @@ mongoose.connect('mongodb://localhost:27017/intelliq', {
 }).catch((err) => console.error('Database failed to connect'))
 
 const db = mongoose.connection
-// Handle database connection errors
-// db.on('error', (err) => { throw (err) })
-db.on('error', (err) => { console.error(err) })
 
+// Handle database connection errors
+db.on('error', (err) => { console.error(err) })
 db.on('disconnected', () => {
     console.log('Database disconnected')
 })
@@ -59,8 +59,8 @@ app.use(express.json())
 // https server initialization
 https.createServer(
     {
-        key: fs.readFileSync("./ssl/server.key"),
-        cert: fs.readFileSync("./ssl/server.cert"),
+        key: fs.readFileSync(path.join(__dirname, 'ssl/server.key')),
+        cert: fs.readFileSync(path.join(__dirname, 'ssl/server.cert')),
     },
     app
 ).listen(9103, () => {
