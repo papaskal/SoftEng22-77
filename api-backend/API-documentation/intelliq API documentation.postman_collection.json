@@ -1,0 +1,2282 @@
+{
+	"info": {
+		"_postman_id": "0e2f7f69-b756-4bf8-a4bc-74e1e5524082",
+		"name": "intelliq API documentation",
+		"description": "To intelliq API είναι ένα REST API που υποστηρίζει λειτουργίες διαχείρισης της δομής έξυπνων ερωτηματολογίων, λήψης, καταχώρησης και εξαγωγής απαντήσεων.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23942102"
+	},
+	"item": [
+		{
+			"name": "Healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/admin/healthcheck",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"healthcheck"
+					]
+				},
+				"description": "Επιβεβαίωση της συνδεσιμότητας (end-to-end connectivity) μεταξύ του χρήστη και της βάσης δεδομένων."
+			},
+			"response": [
+				{
+					"name": "Healthcheck",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/admin/healthcheck",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"admin",
+								"healthcheck"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-RB+RUrf7glBJj8NEqzpLOZInGJ0\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:35:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"OK\",\n    \"dbconnection\": \"MongoDB database connected\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add questionnaire",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "questionnaires/εκπαίδευση.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/admin/questionnaire_upd",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"questionnaire_upd"
+					]
+				},
+				"description": "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου.\n\nΣτην http κλήση το αρχείο πρέπει να είναι κωδικοποιημένο ως πεδίο \"file\" σε multipart/form-data κωδικοποίηση.\n\nΗ απαιτούμενη δομή του αρχείου JSON είναι η ακόλουθη:\n\n| **Πεδίο** | **Τύπος** | **Περιγραφή** |\n| --- | --- | --- |\n| questionnaireID | String | Το αναγνωριστικό του ερωτηματολογίου |\n| questionnaireTitle | String | Ο τίτλος του ερωτηματολογίου |\n| keywords | List | Λίστα με λέξεις-κλειδιά. Κάθε λέξη-κλειδί είναι ένα string |\n| questions | List | Λίστα με ερωτήσεις. Για κάθε ερώτηση, ένα JSON object που περιέχει τα ακόλουθα (qID, qtext, required, type, options) : |\n| qID | String | Το αναγνωριστικό της ερώτησης |\n| qtext | String | Το κείμενο της ερώτησης |\n| required | String | \"TRUE\" ή \"FALSE\" |\n| type | String | \"question\" ή \"profile\" |\n| options | List | Λίστα με τις επιλογές. Για κάθε επιλογή, ένα JSON object με τα ακόλουθα (optID, opttxt, nextqID) : |\n| optID | String | Το αναγνωριστικό της απάντησης |\n| opttxt | String | Το κείμενο της απάντησης |\n| nextqID | String | Το αναγνωριστικό της επόμενης ερώτησης |\n\nΓια το αρχείο JSON πρέπει επιπλέον να ισχύουν τα ακόλουθα:\n\n- Το αναγνωριστικό της κάθε ερώτησης πρέπει να είναι μοναδικό.\n- Το αναγνωριστικό μιας ερώτησης δεν μπορεί να είναι \"-\".\n- Για όλες τις επιλογές της τελευταίας ερώτησης, το αναγνωριστικό της επόμενης ερώτησης πρέπει να είναι \"-\".\n- Για όλες τις επιλογές οποιασδήποτε ερώτησης, το αναγνωριστικό της επόμενης ερώτησης πρέπει να αντιστοιχεί σε ερώτηση που είναι πιο μετά στη λίστα.\n- Οι ερωτήσεις πρέπει να είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n- Για οποιαδήποτε ερώτηση, το αναγνωριστικό της κάθε επιλογής πρέπει να είναι μοναδικό.\n- Για οποιαδήποτε ερώτηση, οι επιλογές πρέπει να είναι ταξινομημένες ως προς το αναγνριστικό της επιλογής."
+			},
+			"response": [
+				{
+					"name": "Add questionnaire (invalid)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/εκπαίδευση.json",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/admin/questionnaire_upd",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"admin",
+								"questionnaire_upd"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-LItb/6rWAnKBWBXOlsbocKvPNXQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Feb 2023 02:39:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"No file sent\"\n}"
+				},
+				{
+					"name": "Add questionnaire",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "questionnaires/εκπαίδευση.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/admin/questionnaire_upd",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"admin",
+								"questionnaire_upd"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 05 Feb 2023 00:06:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Reset all",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/admin/resetall",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"resetall"
+					]
+				},
+				"description": "Αρχικοποίηση όλων των δεδομένων του συστήματος, δηλαδή ερωτηματολόγια και απαντήσεις."
+			},
+			"response": [
+				{
+					"name": "Reset all",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/admin/resetall",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"admin",
+								"resetall"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f-v/Y1JusChTxrQUzPtNAKycooOTA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:37:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Reset questionnaire",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/admin/resetq/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"resetq",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Διαγραφή όλων των απαντήσεων του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+			},
+			"response": [
+				{
+					"name": "Reset questionnaire",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/admin/resetq/:questionnaireID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"admin",
+								"resetq",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f-v/Y1JusChTxrQUzPtNAKycooOTA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:38:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"OK\"\n}"
+				},
+				{
+					"name": "Reset questionnaire (invalid)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/admin/resetq/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"resetq",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-f/dwDrjqVPzNqkC6P9ceoccNDiQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:38:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Questionnaire does not exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete questionnaire",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/admin/deletequestionnaire/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"admin",
+						"deletequestionnaire",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Διαγραφή του ερωτηματολογίου με ταυτοποίηση questionnaireID."
+			},
+			"response": [
+				{
+					"name": "Delete questionnaire",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/admin/deletequestionnaire/:questionnaireID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"admin",
+								"deletequestionnaire",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 05 Feb 2023 00:06:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Delete questionnaire (invalid)",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/admin/deletequestionnaire/:questionnaireID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"admin",
+								"deletequestionnaire",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-f/dwDrjqVPzNqkC6P9ceoccNDiQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:38:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Questionnaire does not exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all questionnaires",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/allquestionnaires",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"allquestionnaires"
+					]
+				},
+				"description": "Επιστροφή object με λίστα που περιέχει τα βασικά στοιχεία όλων των ερωτηματολογίων, ταξινομημένα ως προς την ημερομηνία δημιουργίας τους.\n\nΤο object έχει το ακόλουθο schema:\n\n| **Πεδίο** | **Τύπος** | **Περιγραφή** |\n| --- | --- | --- |\n| questionnaires | List | Λίστα με τα ερωτηματολόγια. Για κάθε ερωτηματολόγιο, ένα JSON object με τα ακόλουθα (questionnaireID, questionnaireTitle) : |\n| questionnaireID | String | Το αναγνωριστικό του ερωτηματολογίου |\n| questionnaireTitle | String | Ο τίτλος του ερωτηματολογίου |"
+			},
+			"response": [
+				{
+					"name": "Get all questionnaires",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/allquestionnaires",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"allquestionnaires"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "323"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"143-TFwFO+XaW+MwVRhIUO5JRM4T3Bo\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 05 Feb 2023 00:08:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionnaires\": [\n        {\n            \"questionnaireID\": \"QQ001\",\n            \"questionnaireTitle\": \"Εκπαίδευση και καριέρα\"\n        },\n        {\n            \"questionnaireID\": \"QQ000\",\n            \"questionnaireTitle\": \"My first research questionnaire\"\n        },\n        {\n            \"questionnaireID\": \"QQ003\",\n            \"questionnaireTitle\": \"Χόμπι\"\n        },\n        {\n            \"questionnaireID\": \"QQ004\",\n            \"questionnaireTitle\": \"Οθόνες\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get questionnaire",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/questionnaire/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"questionnaire",
+						":questionnaireID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΤο object έχει το ακόλουθο schema:\n\n| Πεδίο | Τύπος | Περιγραφή |\n| --- | --- | --- |\n| questionnaireID | String | Το αναγνωριστικό του ερωτηματολογίου |\n| questionnaireTitle | String | Ο τίτλος του ερωτηματολογίου |\n| keywords | List | Λίστα με λέξεις κλειδιά. Κάθε λέξη-κλειδί είναι ένα string. |\n| questions | List | Λίστα με ερωτήσεις. Για κάθε ερώτηση ένα JSON object που περιέχει τα ακόλουθα (qID, qtext, required, type) : |\n| qID | String | Το αναγνωριστικό της ερώτησης |\n| qtext | String | Το κείμενο της ερώτησης |\n| required | String | \"TRUE\" ή \"FALSE\" |\n| type | String | \"question\" ή \"profile\" |\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object."
+			},
+			"response": [
+				{
+					"name": "Get questionnaire",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/questionnaire/:questionnaireID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"questionnaire",
+								":questionnaireID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2818"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b02-7lrDCUYwpUoGxCilgiYHboexFTY\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:28:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionnaireID\": \"QQ001\",\n    \"questionnaireTitle\": \"Εκπαίδευση και καριέρα\",\n    \"keywords\": [\n        \"εκπαίδευση\",\n        \"εργασία\",\n        \"σπουδές\"\n    ],\n    \"questions\": [\n        {\n            \"qID\": \"P01\",\n            \"qtext\": \"Σε ποια πόλη κατοικείτε;\",\n            \"required\": \"FALSE\",\n            \"type\": \"profile\"\n        },\n        {\n            \"qID\": \"P02\",\n            \"qtext\": \"Ποια είναι ηλικία σας\",\n            \"required\": \"TRUE\",\n            \"type\": \"profile\"\n        },\n        {\n            \"qID\": \"Q01\",\n            \"qtext\": \"Πηγαίνετε σχολείο;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q02\",\n            \"qtext\": \"Πηγαίνετε σε ιδιωτικό ή δημόσιο σχολείο;\",\n            \"required\": \"FALSE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q03\",\n            \"qtext\": \"Σε ποια βαθμίδα εκπαίδευσης βρίσκεστε;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q04\",\n            \"qtext\": \"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχει το σχολείο σας;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q05\",\n            \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με το σχολείο σας;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q06\",\n            \"qtext\": \"Σπουδάζετε αυτή τη στιγμή σε κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q07\",\n            \"qtext\": \"Σε τι είδους ίδρυμα σπουδάζετε;\",\n            \"required\": \"FALSE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q08\",\n            \"qtext\": \"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q09\",\n            \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q10\",\n            \"qtext\": \"Έχετε αποφοιτήσει επιτυχώς από κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q11\",\n            \"qtext\": \"Εργάζεστε;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q12\",\n            \"qtext\": \"Το αντικείμενο της εργασίας σας σχετίζεται με το αντικείμενο των σπουδών σας;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q13\",\n            \"qtext\": \"Εργάζεστε;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q14\",\n            \"qtext\": \"Ποιο είναι το επάγγελμά σας;\",\n            \"required\": \"FALSE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q15\",\n            \"qtext\": \"Πόσο ευχαριστημένος είστε με τις συνθήκες της εργασία σας;\",\n            \"required\": \"TRUE\",\n            \"type\": \"question\"\n        },\n        {\n            \"qID\": \"Q16\",\n            \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με την εργασία σας;\",\n            \"required\": \"FALSE\",\n            \"type\": \"question\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Get questionnaire (csv)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/questionnaire/:questionnaireID?format=csv",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"questionnaire",
+								":questionnaireID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv"
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4288"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10c0-aeOuumhwduDI5bLqLrAnOoV+ocE\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:27:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"questionnaireID\",\"questionnaireTitle\",\"keywords\",\"qID\",\"qtext\",\"required\",\"type\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"P01\",\"Σε ποια πόλη κατοικείτε;\",\"FALSE\",\"profile\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"P02\",\"Ποια είναι ηλικία σας\",\"TRUE\",\"profile\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q01\",\"Πηγαίνετε σχολείο;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q02\",\"Πηγαίνετε σε ιδιωτικό ή δημόσιο σχολείο;\",\"FALSE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q03\",\"Σε ποια βαθμίδα εκπαίδευσης βρίσκεστε;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q04\",\"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχει το σχολείο σας;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q05\",\"Γιατί δεν είστε ευχαριστημένος με το σχολείο σας;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q06\",\"Σπουδάζετε αυτή τη στιγμή σε κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q07\",\"Σε τι είδους ίδρυμα σπουδάζετε;\",\"FALSE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q08\",\"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q09\",\"Γιατί δεν είστε ευχαριστημένος με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q10\",\"Έχετε αποφοιτήσει επιτυχώς από κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q11\",\"Εργάζεστε;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q12\",\"Το αντικείμενο της εργασίας σας σχετίζεται με το αντικείμενο των σπουδών σας;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q13\",\"Εργάζεστε;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q14\",\"Ποιο είναι το επάγγελμά σας;\",\"FALSE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q15\",\"Πόσο ευχαριστημένος είστε με τις συνθήκες της εργασία σας;\",\"TRUE\",\"question\"\r\n\"QQ001\",\"Εκπαίδευση και καριέρα\",\"[\"\"εκπαίδευση\"\",\"\"εργασία\"\",\"\"σπουδές\"\"]\",\"Q16\",\"Γιατί δεν είστε ευχαριστημένος με την εργασία σας;\",\"FALSE\",\"question\""
+				},
+				{
+					"name": "Get questionnaire (invalid)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/questionnaire/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"questionnaire",
+								":questionnaireID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-f/dwDrjqVPzNqkC6P9ceoccNDiQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:33:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Questionnaire does not exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get question",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/question/:questionnaireID/:questionID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"question",
+						":questionnaireID",
+						":questionID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τα πλήρη στοιχεία της ερώτησης questionID του ερωτηματολογίου questionnaireID. Οι επιλογές της ερώτησης (απαντήσεις) είναι ταξινομημένες ως προς το αναγνωριστικό της απάντησης.\n\nΤο object έχει το ακόλουθο schema:\n\n| **Πεδίο** | **Τύπος** | **Περιγραφή** |\n| --- | --- | --- |\n| questionnaireID | String | Το αναγνωριστικό του ερωτηματολογίου |\n| qID | String | Το αναγνωριστικό της ερώτησης |\n| qtext | String | Το κείμενο της ερώτησης |\n| required | String | \"true\" ή \"false\" |\n| type | String | \"question\" ή \"profile\" |\n| options | List | Λίστα με τις επιλογές. Για κάθε επιλογή, ένα JSON object που περιέχει τα ακόλουθα (optID, opttxt, nextqID) : |\n| optID | String | Το αναγνωριστικό της απάντησης |\n| opttxt | String | Το κείμενο της απάντησης |\n| nextqID | String | Το αναγνωριστικό της επόμενης ερώτησης |\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object."
+			},
+			"response": [
+				{
+					"name": "Get question",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/question/:questionnaireID/:questionID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"question",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "236"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ec-m+lKoV5pdghY8osPKS0p1KIkd4c\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:40:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionnaireID\": \"QQ001\",\n    \"qID\": \"Q01\",\n    \"qtext\": \"Πηγαίνετε σχολείο;\",\n    \"required\": \"TRUE\",\n    \"type\": \"question\",\n    \"options\": [\n        {\n            \"optID\": \"Q01A1\",\n            \"opttxt\": \"Ναι\",\n            \"nextqID\": \"Q02\"\n        },\n        {\n            \"optID\": \"Q01A2\",\n            \"opttxt\": \"Όχι\",\n            \"nextqID\": \"Q06\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Get question (csv)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/question/:questionnaireID/:questionID?format=csv",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"question",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv"
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "262"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"106-g9OPPoZPi1P27FRbFHoWBk1RG4U\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:40:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"questionnaireID\",\"qID\",\"qtext\",\"required\",\"type\",\"optID\",\"opttxt\",\"nextqID\"\r\n\"QQ001\",\"Q01\",\"Πηγαίνετε σχολείο;\",\"TRUE\",\"question\",\"Q01A1\",\"Ναι\",\"Q02\"\r\n\"QQ001\",\"Q01\",\"Πηγαίνετε σχολείο;\",\"TRUE\",\"question\",\"Q01A2\",\"Όχι\",\"Q06\""
+				},
+				{
+					"name": "Get question (invalid)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/question/:questionnaireID/:questionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"question",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-f/dwDrjqVPzNqkC6P9ceoccNDiQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:49:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Questionnaire does not exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Do answer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"doanswer",
+						":questionnaireID",
+						":questionID",
+						":session",
+						":optionID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						},
+						{
+							"key": "session",
+							"value": "nj3u"
+						},
+						{
+							"key": "optionID",
+							"value": "Q01A1"
+						}
+					]
+				},
+				"description": "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη."
+			},
+			"response": [
+				{
+					"name": "Do answer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								},
+								{
+									"key": "session",
+									"value": "nj3u"
+								},
+								{
+									"key": "optionID",
+									"value": "Q01A1"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 05 Feb 2023 00:08:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Do answer (invalid)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/doanswer/:questionnaireID/:questionID/:session/:optionID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"doanswer",
+								":questionnaireID",
+								":questionID",
+								":session",
+								":optionID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								},
+								{
+									"key": "session",
+									"value": "nj3u"
+								},
+								{
+									"key": "optionID",
+									"value": "askj"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-LWFcMWkwt4UNtBOgzVE0RzWMyZI\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:41:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Option does not exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Submit answers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"submitanswers",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Καταχώρηση object με λίστα απαντήσεων για ένα ερωτηματολογίο με ταυτοποίηση questionnaireID.\n\nΤο object πρέπει να έχει το ακόλουθο schema:\n\n| **Πεδίο** | **Τύπος** |  |\n| --- | --- | --- |\n| answers | List | Λίστα με τις απαντήσεις που δόθηκαν. Για κάθε απάντηση, ένα JSON object που περιέχει τα ακόλουθα (questionID, optionID) : |\n| questionID | String | Το αναγνωριστικό της ερώτησης |\n| optionID | String | Το αναγνωριστικό της απάντησης |\n\nΟι απαντήσεις πρέπει να είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης."
+			},
+			"response": [
+				{
+					"name": "Submit answers (invalid)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"questionID\": \"P01\",\r\n    \"optionID\": \"Αθήνα\"\r\n  },\r\n  {\r\n    \"questionID\": \"P02\",\r\n    \"optionID\": \"P02A1\"\r\n  },\r\n  {\r\n    \"questionID\": \"Q01\",\r\n    \"optionID\": \"Q01A2\"\r\n  },\r\n  {\r\n    \"questionID\": \"Q06\",\r\n    \"optionID\": \"Q06A2\"\r\n  },\r\n  {\r\n    \"questionID\": \"Q07\",\r\n    \"optionID\": \"Q07A1\"\r\n  },\r\n  {\r\n    \"questionID\": \"Q08\",\r\n    \"optionID\": \"Q08A1\"\r\n  },\r\n  {\r\n    \"questionID\": \"Q11\",\r\n    \"optionID\": \"Q11A2\"\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/submitanswers/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-DJgcdMZ2QQez2YwpQlQl4WxxKdM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:43:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Invalid data\"\n}"
+				},
+				{
+					"name": "Submit answers",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/submitanswers/:questionnaireID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"submitanswers",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 05 Feb 2023 00:09:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Get all sessions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/allsessions/:questionnaireID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"allsessions",
+						":questionnaireID"
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						}
+					]
+				},
+				"description": "Επιστροφή object με λίστα που περιέχει όλα τα session που αντισοιχούν σε γεγονάτα απάντησης του ερωτηματολογίου με ταυτοποίηση questionnaireID, ταξινομημένα ως προς το αναγνωριστικό γεγονότος απάντησης.\n\nΤο object έχει το ακόλουθο schema:\n\n| **Πεδίο** | **Τύπος** | **Περιγραφή** |\n| --- | --- | --- |\n| sessions | List | Λίστα από αναγωριστικά γεγονότος απάντησης. Κάθε αναγνωριστικό γεγονότος απάντησης είναι ένα string |"
+			},
+			"response": [
+				{
+					"name": "Get all sessions (invalid)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/allsessions/:questionnaireID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"allsessions",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ099"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-f/dwDrjqVPzNqkC6P9ceoccNDiQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:44:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Questionnaire does not exist\"\n}"
+				},
+				{
+					"name": "Get all sessions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/allsessions/:questionnaireID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"allsessions",
+								":questionnaireID"
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "98"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"62-PDPiXQOBVSpJhPfLVm7azwVdYvI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 05 Feb 2023 00:09:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"sessions\": [\n        \"3YCF\",\n        \"3mPs\",\n        \"FWkB\",\n        \"Fpmz\",\n        \"JQcv\",\n        \"P0lM\",\n        \"R5pr\",\n        \"VQyy\",\n        \"ir2u\",\n        \"nj3u\",\n        \"pR3L\",\n        \"sqrB\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get session answers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/getsessionanswers/:questionnaireID/:session",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"getsessionanswers",
+						":questionnaireID",
+						":session"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "session",
+							"value": "FWkB"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\n| **Πεδίο** | **Τύπος** | **Περιγραφή** |\n| --- | --- | --- |\n| questionnaireID | String | Το αναγνωριστικό του ερωτηματολογίου |\n| session | String | Το αναγνωριστικό του γεγονότος απάντησης |\n| answers | List | Λίστα με τις επιλογές που δόθηκαν. Για κάθε επιλογή, ένα JSON object που περιέχει τα ακόλουθα (qID, ans) : |\n| qID | String | Το αναγνωριστικό της ερώτησης |\n| ans | String | Το αναγνωριστικό της απάντησης που δόθηκε κατά το γεγονός απάντησης session |\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object."
+			},
+			"response": [
+				{
+					"name": "Get session answers",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/getsessionanswers/:questionnaireID/:session",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"getsessionanswers",
+								":questionnaireID",
+								":session"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "session",
+									"value": "10KK"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "257"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"101-gC/VWuGUyy1VxR6xIa26a+nBkWg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:46:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionnaireID\": \"QQ001\",\n    \"session\": \"10KK\",\n    \"answers\": [\n        {\n            \"qID\": \"P01\",\n            \"ans\": \"Αθήνα\"\n        },\n        {\n            \"qID\": \"P02\",\n            \"ans\": \"P02A1\"\n        },\n        {\n            \"qID\": \"Q01\",\n            \"ans\": \"Q01A2\"\n        },\n        {\n            \"qID\": \"Q06\",\n            \"ans\": \"Q06A1\"\n        },\n        {\n            \"qID\": \"Q07\",\n            \"ans\": \"Q07A1\"\n        },\n        {\n            \"qID\": \"Q08\",\n            \"ans\": \"Q08A1\"\n        },\n        {\n            \"qID\": \"Q11\",\n            \"ans\": \"Q11A2\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Get session answers (csv)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getsessionanswers/:questionnaireID/:session?format=csv",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getsessionanswers",
+								":questionnaireID",
+								":session"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv"
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "session",
+									"value": "10KK"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "254"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fe-OE4Lcj0BkzJC3qFk1VJrLUkSb18\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:46:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"questionnaireID\",\"session\",\"qID\",\"ans\"\r\n\"QQ001\",\"10KK\",\"P01\",\"Αθήνα\"\r\n\"QQ001\",\"10KK\",\"P02\",\"P02A1\"\r\n\"QQ001\",\"10KK\",\"Q01\",\"Q01A2\"\r\n\"QQ001\",\"10KK\",\"Q06\",\"Q06A1\"\r\n\"QQ001\",\"10KK\",\"Q07\",\"Q07A1\"\r\n\"QQ001\",\"10KK\",\"Q08\",\"Q08A1\"\r\n\"QQ001\",\"10KK\",\"Q11\",\"Q11A2\""
+				},
+				{
+					"name": "Get session answers (invalid)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getsessionanswers/:questionnaireID/:session",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getsessionanswers",
+								":questionnaireID",
+								":session"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "session",
+									"value": "wadasa"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"35-pzooNDiWU1zjG90fg8D92TUKSKg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Feb 2023 02:41:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Session does not exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get question answers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/getquestionanswers/:questionnaireID/:questionID?format=csv",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"getquestionanswers",
+						":questionnaireID",
+						":questionID"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv"
+						}
+					],
+					"variable": [
+						{
+							"key": "questionnaireID",
+							"value": "QQ001"
+						},
+						{
+							"key": "questionID",
+							"value": "Q01"
+						}
+					]
+				},
+				"description": "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν.\n\n| **Πεδίο** | **Τύπος** | **Περιγραφή** |\n| --- | --- | --- |\n| questionnaireID | String | Το αναγνωριστικό του ερωτηματολογίου |\n| questionID | String | Το αναγνωριστικό της ερώτησης |\n| answers | List | Λίστα με τις επιλογές που έγιναν. Για κάθε επιλογή, ένα JSON object που περιέχει τα ακόλουθα (session, ans) : |\n| session | String | Το αναγνωριστικό του γεγονότος απάντησης |\n| ans | String | Το αναγνωριστικό της απάντησης που δόθηκε κατά το γεγονός απάντησης session |\n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object."
+			},
+			"response": [
+				{
+					"name": "Get question answers",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9103/intelliq_api/getquestionanswers/:questionnaireID/:questionID",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9103",
+							"path": [
+								"intelliq_api",
+								"getquestionanswers",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "190"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"be-98LDz0I3i7XEJyWb7COQLYm52GQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:47:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questionnaireID\": \"QQ001\",\n    \"questionID\": \"Q01\",\n    \"answers\": [\n        {\n            \"session\": \"nj3u\",\n            \"ans\": \"Q01A1\"\n        },\n        {\n            \"session\": \"10KK\",\n            \"ans\": \"Q01A2\"\n        },\n        {\n            \"session\": \"en78\",\n            \"ans\": \"Q01A1\"\n        },\n        {\n            \"session\": \"J9YD\",\n            \"ans\": \"Q01A2\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Get question answers (csv)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getquestionanswers/:questionnaireID/:questionID?format=csv",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getquestionanswers",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv"
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q01"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "166"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a6-/osJVwzWgHGDl52J1BK7nzrEjko\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:47:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"questionnaireID\",\"questionID\",\"session\",\"ans\"\r\n\"QQ001\",\"Q01\",\"nj3u\",\"Q01A1\"\r\n\"QQ001\",\"Q01\",\"10KK\",\"Q01A2\"\r\n\"QQ001\",\"Q01\",\"en78\",\"Q01A1\"\r\n\"QQ001\",\"Q01\",\"J9YD\",\"Q01A2\""
+				},
+				{
+					"name": "Get question answers (invalid)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/getquestionanswers/:questionnaireID/:questionID?format=csv",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"getquestionanswers",
+								":questionnaireID",
+								":questionID"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "csv"
+								}
+							],
+							"variable": [
+								{
+									"key": "questionnaireID",
+									"value": "QQ001"
+								},
+								{
+									"key": "questionID",
+									"value": "Q0199"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "54"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"36-YN1pubRY7wX6yv60tQbld7Vywgs\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 03 Feb 2023 23:48:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failed\",\n    \"reason\": \"Question does not exist\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://localhost:9103/intelliq_api",
+			"type": "string"
+		}
+	]
+}
