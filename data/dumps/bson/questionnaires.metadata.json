@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"intelliq.questionnaires"},{"v":{"$numberInt":"2"},"unique":true,"key":{"questionnaireID":{"$numberInt":"1"}},"name":"questionnaireID_1","ns":"intelliq.questionnaires","background":true}],"uuid":"59b6ba8ff16c47058cb56dc2e85b5c76"}

@@ -1,0 +1,2433 @@
+[{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a9946f"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "P01",
+	"ans": "Λάρισα",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.446Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.446Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a994af"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "P02",
+	"ans": "P02A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.455Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.455Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a994ef"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.461Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.461Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a9952f"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q06",
+	"ans": "Q06A1",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.465Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.465Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a9956f"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q07",
+	"ans": "Q07A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.474Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.474Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a995af"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q08",
+	"ans": "Q08A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.48Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.48Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a995ef"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.488Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.488Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a9962f"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q12",
+	"ans": "Q12A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.492Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.492Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a9966f"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q14",
+	"ans": "Ξυλουργός",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.497Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.497Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbbdfeaac1a4c9a996af"
+	},
+	"questionnaireID": "QQ001",
+	"session": "JQcv",
+	"qID": "Q15",
+	"ans": "Q15A1",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:21.504Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:21.504Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbdcfeaac1a4c9a99a76"
+	},
+	"questionnaireID": "QQ001",
+	"session": "pR3L",
+	"qID": "P02",
+	"ans": "P02A1",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:52.103Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:52.103Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbdcfeaac1a4c9a99ab6"
+	},
+	"questionnaireID": "QQ001",
+	"session": "pR3L",
+	"qID": "Q01",
+	"ans": "Q01A1",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:52.109Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:52.109Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbdcfeaac1a4c9a99af6"
+	},
+	"questionnaireID": "QQ001",
+	"session": "pR3L",
+	"qID": "Q02",
+	"ans": "Q02A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:52.116Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:52.116Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbdcfeaac1a4c9a99b36"
+	},
+	"questionnaireID": "QQ001",
+	"session": "pR3L",
+	"qID": "Q03",
+	"ans": "Q03A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:52.121Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:52.121Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbdcfeaac1a4c9a99b76"
+	},
+	"questionnaireID": "QQ001",
+	"session": "pR3L",
+	"qID": "Q04",
+	"ans": "Q04A3",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:52.126Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:52.126Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbdcfeaac1a4c9a99bb6"
+	},
+	"questionnaireID": "QQ001",
+	"session": "pR3L",
+	"qID": "Q05",
+	"ans": "Βαριέμαι",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:52.132Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:52.132Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbbdcfeaac1a4c9a99bf6"
+	},
+	"questionnaireID": "QQ001",
+	"session": "pR3L",
+	"qID": "Q13",
+	"ans": "Q13A2",
+	"createdAt": {
+		"$date": "2023-02-04T01:58:52.139Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T01:58:52.139Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a037"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "P01",
+	"ans": "Ηράκλειο",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.912Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.912Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a077"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "P02",
+	"ans": "P02A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.917Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.917Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a0b7"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.924Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.924Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a0f7"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q06",
+	"ans": "Q06A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.93Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.93Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a137"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q10",
+	"ans": "Q10A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.935Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.935Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a177"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.943Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.943Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a1b7"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q12",
+	"ans": "Q12A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.949Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.949Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a1f7"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q14",
+	"ans": "Πολιτικός μηχανικός",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.957Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.957Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a237"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q15",
+	"ans": "Q15A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.961Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.961Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc26feaac1a4c9a9a277"
+	},
+	"questionnaireID": "QQ001",
+	"session": "VQyy",
+	"qID": "Q16",
+	"ans": "Πολλή δουλειά",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:06.966Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:06.966Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc38feaac1a4c9a9a5c4"
+	},
+	"questionnaireID": "QQ001",
+	"session": "R5pr",
+	"qID": "P02",
+	"ans": "P02A4",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:24.516Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:24.516Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc38feaac1a4c9a9a604"
+	},
+	"questionnaireID": "QQ001",
+	"session": "R5pr",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:24.525Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:24.525Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc38feaac1a4c9a9a644"
+	},
+	"questionnaireID": "QQ001",
+	"session": "R5pr",
+	"qID": "Q06",
+	"ans": "Q06A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:24.53Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:24.53Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc38feaac1a4c9a9a684"
+	},
+	"questionnaireID": "QQ001",
+	"session": "R5pr",
+	"qID": "Q10",
+	"ans": "Q10A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:24.535Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:24.535Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc38feaac1a4c9a9a6c4"
+	},
+	"questionnaireID": "QQ001",
+	"session": "R5pr",
+	"qID": "Q13",
+	"ans": "Q13A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:24.543Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:24.543Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc53feaac1a4c9a9aa11"
+	},
+	"questionnaireID": "QQ001",
+	"session": "sqrB",
+	"qID": "P01",
+	"ans": "Λονδίνο",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:51.53Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:51.53Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc53feaac1a4c9a9aa51"
+	},
+	"questionnaireID": "QQ001",
+	"session": "sqrB",
+	"qID": "P02",
+	"ans": "P02A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:51.538Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:51.538Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc53feaac1a4c9a9aa91"
+	},
+	"questionnaireID": "QQ001",
+	"session": "sqrB",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:51.544Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:51.544Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc53feaac1a4c9a9aad1"
+	},
+	"questionnaireID": "QQ001",
+	"session": "sqrB",
+	"qID": "Q06",
+	"ans": "Q06A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:51.551Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:51.551Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc53feaac1a4c9a9ab11"
+	},
+	"questionnaireID": "QQ001",
+	"session": "sqrB",
+	"qID": "Q10",
+	"ans": "Q10A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:51.556Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:51.556Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc53feaac1a4c9a9ab51"
+	},
+	"questionnaireID": "QQ001",
+	"session": "sqrB",
+	"qID": "Q11",
+	"ans": "Q11A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:00:51.561Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:00:51.561Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9af92"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "P02",
+	"ans": "P02A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.9Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.9Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9afd2"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.911Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.911Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9b012"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "Q06",
+	"ans": "Q06A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.918Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.918Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9b052"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "Q07",
+	"ans": "Q07A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.923Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.923Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9b092"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "Q08",
+	"ans": "Q08A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.929Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.929Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9b0d2"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.933Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.933Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9b112"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "Q12",
+	"ans": "Q12A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.941Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.941Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbc71feaac1a4c9a9b152"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3YCF",
+	"qID": "Q15",
+	"ans": "Q15A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:01:21.948Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:01:21.948Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b5d1"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "P01",
+	"ans": "Αθήνα",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.333Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.333Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b611"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "P02",
+	"ans": "P02A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.341Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.341Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b651"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.348Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.348Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b691"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q06",
+	"ans": "Q06A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.353Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.353Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b6d1"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q10",
+	"ans": "Q10A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.36Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.36Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b711"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.364Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.364Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b751"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q12",
+	"ans": "Q12A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.372Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.372Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b791"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q14",
+	"ans": "Λογιστής",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.382Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.382Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b7d1"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q15",
+	"ans": "Q15A4",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.391Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.391Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcb4feaac1a4c9a9b811"
+	},
+	"questionnaireID": "QQ001",
+	"session": "3mPs",
+	"qID": "Q16",
+	"ans": "Ήθελα να γίνω τραγουδιστής",
+	"createdAt": {
+		"$date": "2023-02-04T02:02:28.395Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:02:28.395Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcd5feaac1a4c9a9bbd9"
+	},
+	"questionnaireID": "QQ001",
+	"session": "Fpmz",
+	"qID": "P02",
+	"ans": "P02A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:01.334Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:01.334Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcd5feaac1a4c9a9bc19"
+	},
+	"questionnaireID": "QQ001",
+	"session": "Fpmz",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:01.341Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:01.341Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcd5feaac1a4c9a9bc59"
+	},
+	"questionnaireID": "QQ001",
+	"session": "Fpmz",
+	"qID": "Q06",
+	"ans": "Q06A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:01.347Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:01.347Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcd5feaac1a4c9a9bc99"
+	},
+	"questionnaireID": "QQ001",
+	"session": "Fpmz",
+	"qID": "Q07",
+	"ans": "Q07A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:01.356Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:01.356Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcd5feaac1a4c9a9bcd9"
+	},
+	"questionnaireID": "QQ001",
+	"session": "Fpmz",
+	"qID": "Q08",
+	"ans": "Q08A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:01.362Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:01.362Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcd5feaac1a4c9a9bd19"
+	},
+	"questionnaireID": "QQ001",
+	"session": "Fpmz",
+	"qID": "Q11",
+	"ans": "Q11A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:01.369Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:01.369Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcf8feaac1a4c9a9c11d"
+	},
+	"questionnaireID": "QQ001",
+	"session": "P0lM",
+	"qID": "P02",
+	"ans": "P02A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:36.321Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:36.321Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcf8feaac1a4c9a9c15d"
+	},
+	"questionnaireID": "QQ001",
+	"session": "P0lM",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:36.338Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:36.338Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcf8feaac1a4c9a9c19d"
+	},
+	"questionnaireID": "QQ001",
+	"session": "P0lM",
+	"qID": "Q06",
+	"ans": "Q06A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:36.347Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:36.347Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcf8feaac1a4c9a9c1dd"
+	},
+	"questionnaireID": "QQ001",
+	"session": "P0lM",
+	"qID": "Q10",
+	"ans": "Q10A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:36.352Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:36.352Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcf8feaac1a4c9a9c21d"
+	},
+	"questionnaireID": "QQ001",
+	"session": "P0lM",
+	"qID": "Q13",
+	"ans": "Q13A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:36.357Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:36.357Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcf8feaac1a4c9a9c25d"
+	},
+	"questionnaireID": "QQ001",
+	"session": "P0lM",
+	"qID": "Q14",
+	"ans": "Ταμίας",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:36.364Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:36.364Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbcf8feaac1a4c9a9c29d"
+	},
+	"questionnaireID": "QQ001",
+	"session": "P0lM",
+	"qID": "Q15",
+	"ans": "Q15A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:03:36.368Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:03:36.368Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9cf0a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "P01",
+	"ans": "Ιεράπετρα",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.457Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.457Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9cf4a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "P02",
+	"ans": "P02A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.467Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.467Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9cf8a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.473Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.473Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9cfca"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q06",
+	"ans": "Q06A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.478Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.478Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d00a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q07",
+	"ans": "Q07A4",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.487Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.487Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d04a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q08",
+	"ans": "Q08A4",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.491Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.491Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d08a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q09",
+	"ans": "Τζάμπα λεφτά",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.497Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.497Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d0ca"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.504Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.504Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d10a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q12",
+	"ans": "Q12A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.51Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.51Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d14a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q14",
+	"ans": "Σερβιτόρος",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.517Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.517Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d18a"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q15",
+	"ans": "Q15A4",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.521Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.521Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbde0feaac1a4c9a9d1ca"
+	},
+	"questionnaireID": "QQ001",
+	"session": "FWkB",
+	"qID": "Q16",
+	"ans": "Είμαι σερβιτόρος",
+	"createdAt": {
+		"$date": "2023-02-04T02:07:28.525Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:07:28.525Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d52c"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "P01",
+	"ans": "P01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.361Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.361Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d556"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "Q01",
+	"ans": "Q01A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.366Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.366Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d580"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "Q02",
+	"ans": "Q02A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.371Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.371Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d5aa"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "Q04",
+	"ans": "Q04A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.378Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.378Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d5d4"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "Q05",
+	"ans": "Q05A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.383Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.383Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d5fe"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "Q07",
+	"ans": "Q07A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.388Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.388Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d628"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "Q08",
+	"ans": "Q08A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.395Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.395Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe0bfeaac1a4c9a9d652"
+	},
+	"questionnaireID": "QQ000",
+	"session": "ZsKd",
+	"qID": "Q09",
+	"ans": "Q09A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:11.399Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:11.399Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9d95f"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "P00",
+	"ans": "asldkj@gmail.com",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.497Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.497Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9d989"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "P01",
+	"ans": "P01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.502Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.502Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9d9b3"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.511Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.511Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9d9dd"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q02",
+	"ans": "Q02A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.515Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.515Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9da07"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q03",
+	"ans": "Q03A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.518Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.518Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9da31"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q04",
+	"ans": "Q04A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.525Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.525Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9da5b"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q05",
+	"ans": "Q05A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.529Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.529Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9da85"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q07",
+	"ans": "Q07A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.532Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.532Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9daaf"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q08",
+	"ans": "Q08A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.537Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.537Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe25feaac1a4c9a9dad9"
+	},
+	"questionnaireID": "QQ000",
+	"session": "InH3",
+	"qID": "Q09",
+	"ans": "Q09A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:08:37.543Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:08:37.543Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9ddbf"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "P00",
+	"ans": "hithere@hotmail.com",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.407Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.407Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9dde9"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "P01",
+	"ans": "P01A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.411Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.411Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9de13"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "Q01",
+	"ans": "Q01A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.415Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.415Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9de3d"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "Q02",
+	"ans": "Q02A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.423Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.423Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9de67"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "Q04",
+	"ans": "Q04A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.427Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.427Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9de91"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "Q05",
+	"ans": "Q05A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.431Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.431Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9debb"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "Q07",
+	"ans": "Q07A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.438Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.438Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9dee5"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "Q08",
+	"ans": "Q08A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.442Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.442Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe3ffeaac1a4c9a9df0f"
+	},
+	"questionnaireID": "QQ000",
+	"session": "RCWm",
+	"qID": "Q09",
+	"ans": "Q09A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:03.446Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:03.446Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e579"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "P01",
+	"ans": "P01A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.032Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.032Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e5bf"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "P02",
+	"ans": "P02A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.039Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.039Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e605"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "P03",
+	"ans": "P03A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.048Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.048Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e64b"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "P04",
+	"ans": "P04A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.054Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.054Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e691"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q01",
+	"ans": "Q01A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.059Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.059Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e6d7"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q02",
+	"ans": "Q02A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.068Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.068Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e71d"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q03",
+	"ans": "Q03A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.073Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.073Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e763"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q04",
+	"ans": "Q04A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.08Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.08Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e7a9"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q05",
+	"ans": "Q05A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.087Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.087Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e7ef"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q06",
+	"ans": "Q06A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.1Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.1Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e835"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q07",
+	"ans": "Q07A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.105Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.105Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e87b"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q08",
+	"ans": "Q08A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.112Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.112Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e8c1"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q09",
+	"ans": "Q09A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.119Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.119Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e907"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q10",
+	"ans": "Q10A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.124Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.124Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e94d"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.131Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.131Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e993"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q12",
+	"ans": "Q12A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.137Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.137Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe72feaac1a4c9a9e9d9"
+	},
+	"questionnaireID": "QQ004",
+	"session": "9Bj6",
+	"qID": "Q13",
+	"ans": "Q13A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:09:54.142Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:09:54.142Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9eeb1"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "P01",
+	"ans": "P01A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.571Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.571Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9eef7"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "P03",
+	"ans": "P03A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.583Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.583Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9ef3d"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "P04",
+	"ans": "P04A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.591Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.591Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9ef83"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.599Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.599Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9efc9"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "Q08",
+	"ans": "Q08A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.604Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.604Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9f00f"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "Q09",
+	"ans": "Q09A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.611Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.611Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9f055"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "Q10",
+	"ans": "Q10A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.616Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.616Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9f09b"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.622Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.622Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9f0e1"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "Q12",
+	"ans": "Q12A3",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.627Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.627Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbe8dfeaac1a4c9a9f127"
+	},
+	"questionnaireID": "QQ004",
+	"session": "HBU2",
+	"qID": "Q13",
+	"ans": "Q13A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:21.632Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:21.632Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f5bc"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "P01",
+	"ans": "P01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.757Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.757Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f602"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "P02",
+	"ans": "P02A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.766Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.766Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f648"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q01",
+	"ans": "Q01A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.772Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.772Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f68e"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q02",
+	"ans": "Q02A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.781Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.781Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f6d4"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q03",
+	"ans": "Q03A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.787Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.787Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f71a"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q07",
+	"ans": "Q07A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.794Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.794Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f760"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q08",
+	"ans": "Q08A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.8Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.8Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f7a6"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q09",
+	"ans": "Q09A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.806Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.806Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f7ec"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q11",
+	"ans": "Q11A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.812Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.812Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea1feaac1a4c9a9f832"
+	},
+	"questionnaireID": "QQ003",
+	"session": "LxXh",
+	"qID": "Q12",
+	"ans": "Q12A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:41.817Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:41.817Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea9feaac1a4c9a9faf2"
+	},
+	"questionnaireID": "QQ003",
+	"session": "UNcs",
+	"qID": "P01",
+	"ans": "P01A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:49.538Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:49.538Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea9feaac1a4c9a9fb38"
+	},
+	"questionnaireID": "QQ003",
+	"session": "UNcs",
+	"qID": "P02",
+	"ans": "P02A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:49.546Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:49.546Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbea9feaac1a4c9a9fb7e"
+	},
+	"questionnaireID": "QQ003",
+	"session": "UNcs",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:10:49.551Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:10:49.551Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbebbfeaac1a4c9a9ff4a"
+	},
+	"questionnaireID": "QQ004",
+	"session": "4fwQ",
+	"qID": "P01",
+	"ans": "P01A1",
+	"createdAt": {
+		"$date": "2023-02-04T02:11:07.726Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:11:07.726Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbebbfeaac1a4c9a9ff90"
+	},
+	"questionnaireID": "QQ004",
+	"session": "4fwQ",
+	"qID": "Q01",
+	"ans": "Q01A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:11:07.732Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:11:07.732Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbebbfeaac1a4c9a9ffd6"
+	},
+	"questionnaireID": "QQ004",
+	"session": "4fwQ",
+	"qID": "Q08",
+	"ans": "Q08A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:11:07.739Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:11:07.739Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63ddbebbfeaac1a4c9aa001c"
+	},
+	"questionnaireID": "QQ004",
+	"session": "4fwQ",
+	"qID": "Q11",
+	"ans": "Q11A2",
+	"createdAt": {
+		"$date": "2023-02-04T02:11:07.744Z"
+	},
+	"updatedAt": {
+		"$date": "2023-02-04T02:11:07.744Z"
+	},
+	"__v": 0
+}]
+
