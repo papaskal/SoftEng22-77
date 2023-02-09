@@ -1,0 +1,413 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Activity Diagram - Answer questionnaire (activity)</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		SoftEng22-77	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="UseCaseDiagram_YWGudGGGAqACCRlv.html" class="PageParentTitle">Απάντηση ερωτηματολογίου : Use Case</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Activity Diagram - Answer questionnaire (activity)		</span>
+<a onclick="javascript: showVpLink('SoftEng22-77.vpp://diagram/kTeZfyGGAqACEgz3', 'Answer questionnaire (activity)\nSoftEng22-77.vpp://diagram/kTeZfyGGAqACEgz3', 'Answer questionnaire (activity)', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|61.0|273.0|90.0|40.0|ActivityAction_pachdGGGAqACCR2P.html|ActivityAction_pachdGGGAqACCR2P.html|pachdGGGAqACCR2O" id="optionpachdGGGAqACCR2O">Reset : Action</option>
+<option value="shape|246.0|384.0|40.0|58.0|DecisionNode_x3CBdGGGAqACCRzK.html|DecisionNode_x3CBdGGGAqACCRzK.html|x3CBdGGGAqACCRzJ" id="optionx3CBdGGGAqACCRzJ">Want to restart? : Decision Node</option>
+<option value="shape|216.0|162.0|103.0|40.0|ActivityAction_jevedGGGAqACCRw_.html|ActivityAction_jevedGGGAqACCRw_.html|jevedGGGAqACCRw9" id="optionjevedGGGAqACCRw9">Start questionnaire : Action</option>
+<option value="shape|257.0|932.0|20.0|20.0|ActivityFinalNode_tRUXsKGGAqACEgwX.html|ActivityFinalNode_tRUXsKGGAqACEgwX.html|NRUXsKGGAqACEgwW" id="optionNRUXsKGGAqACEgwW">Unnamed Activity Final Node : Activity Final Node</option>
+<option value="shape|40.0|801.0|77.0|40.0|ActivityAction_5eLnsKGGAqACEgu0.html|ActivityAction_5eLnsKGGAqACEgu0.html|5eLnsKGGAqACEguz" id="option5eLnsKGGAqACEguz">Skip question : Action</option>
+<option value="shape|59.0|668.0|38.0|60.0|DecisionNode_3C2HsKGGAqACEgrx.html|DecisionNode_3C2HsKGGAqACEgrx.html|HC2HsKGGAqACEgrw" id="optionHC2HsKGGAqACEgrw">Want to answer? : Decision Node</option>
+<option value="shape|248.0|541.0|38.0|60.0|DecisionNode_HB_7sKGGAqACEgp8.html|DecisionNode_HB_7sKGGAqACEgp8.html|HB_7sKGGAqACEgp7" id="optionHB_7sKGGAqACEgp7">Required question? : Decision Node</option>
+<option value="shape|218.0|273.0|99.0|40.0|ActivityAction_ZC95fyGGAqACEg3E.html|ActivityAction_ZC95fyGGAqACEg3E.html|pC95fyGGAqACEg3D" id="optionpC95fyGGAqACEg3D">See question : Action</option>
+<option value="shape|248.0|795.0|38.0|60.0|DecisionNode_9895fyGGAqACEg23.html|DecisionNode_9895fyGGAqACEg23.html|9895fyGGAqACEg22" id="option9895fyGGAqACEg22">Questionnaire finished? : Decision Node</option>
+<option value="shape|227.0|678.0|92.0|40.0|ActivityAction_zhvZfyGGAqACEg0n.html|ActivityAction_zhvZfyGGAqACEg0n.html|zhvZfyGGAqACEg0m" id="optionzhvZfyGGAqACEg0m">Answer question : Action</option>
+<option value="shape|212.0|62.0|110.0|40.0|ActivityAction_fcDZfyGGAqACEg0a.html|ActivityAction_fcDZfyGGAqACEg0a.html|vcDZfyGGAqACEg0Z" id="optionvcDZfyGGAqACEg0Z">Select questionnaire : Action</option>
+<option value="shape|247.0|2.0|40.0|20.0|InitialNode_TnRZfyGGAqACEg0P.html|InitialNode_TnRZfyGGAqACEg0P.html|TnRZfyGGAqACEg0O" id="optionTnRZfyGGAqACEg0O">Unnamed Initial Node : Initial Node</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Answer_questionnaire_activity.png" usemap="#diagram_map" class="Image" width="406" height="956"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="260.0, 22.0, 260.0, 62.0, 274.0, 62.0, 274.0, 22.0" coords2="260.0, 22.0, 260.0, 62.0, 274.0, 62.0, 274.0, 22.0" shape="poly" alt=":Control Flow" id="areadiagram_map_p8DZfyGGAqACEg0f_default" href="ControlFlow_O8DZfyGGAqACEg0e.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="260.90475, 718.0, 260.17142, 795.0, 274.17142, 795.0, 274.90475, 718.0" coords2="260.90475, 718.0, 260.17142, 795.0, 274.17142, 795.0, 274.90475, 718.0" shape="poly" alt=":Control Flow" id="areadiagram_map_SC95fyGGAqACEg28_default" href="ControlFlow_0C95fyGGAqACEg27.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="392.0, 283.0, 392.0163, 286.0, 317.0, 286.0, 317.0, 300.0, 392.09238, 300.0, 394.90762, 818.0, 286.0, 818.0, 286.0, 832.0, 394.9837, 832.0, 395.0, 835.0, 409.0, 835.0, 408.9837, 832.0, 412.0, 832.0, 412.0, 818.0, 408.90762, 818.0, 406.09238, 300.0, 409.0, 300.0, 409.0, 286.0, 406.0163, 286.0, 406.0, 283.0" coords2="392.0, 283.0, 392.0163, 286.0, 317.0, 286.0, 317.0, 300.0, 392.09238, 300.0, 394.90762, 818.0, 286.0, 818.0, 286.0, 832.0, 394.9837, 832.0, 395.0, 835.0, 409.0, 835.0, 408.9837, 832.0, 412.0, 832.0, 412.0, 818.0, 408.90762, 818.0, 406.09238, 300.0, 409.0, 300.0, 409.0, 286.0, 406.0163, 286.0, 406.0, 283.0" shape="poly" alt="No:Control Flow" id="areadiagram_map_Mi95fyGGAqACEg3N_default" href="ControlFlow_Yi95fyGGAqACEg3M.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="260.0, 601.0, 260.0, 678.0, 274.0, 678.0, 274.0, 601.0" coords2="260.0, 601.0, 260.0, 678.0, 274.0, 678.0, 274.0, 601.0" shape="poly" alt="Yes:Control Flow" id="areadiagram_map_dh_7sKGGAqACEgqA_default" href="ControlFlow_uh_7sKGGAqACEgp_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="71.0, 561.0, 71.0, 564.0, 68.0, 564.0, 68.0, 578.0, 71.0, 578.0, 71.0, 668.0, 85.0, 668.0, 85.0, 578.0, 248.0, 578.0, 248.0, 564.0, 85.0, 564.0, 85.0, 561.0" coords2="71.0, 561.0, 71.0, 564.0, 68.0, 564.0, 68.0, 578.0, 71.0, 578.0, 71.0, 668.0, 85.0, 668.0, 85.0, 578.0, 248.0, 578.0, 248.0, 564.0, 85.0, 564.0, 85.0, 561.0" shape="poly" alt="No:Control Flow" id="areadiagram_map_QS2HsKGGAqACEgr3_default" href="ControlFlow_7i2HsKGGAqACEgr2.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="97.0, 691.0, 97.0, 705.0, 227.0, 705.0, 227.0, 691.0" coords2="97.0, 691.0, 97.0, 705.0, 227.0, 705.0, 227.0, 691.0" shape="poly" alt="Yes:Control Flow" id="areadiagram_map_XFQnsKGGAqACEgs7_default" href="ControlFlow_VFQnsKGGAqACEgs6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="71.0, 728.0, 71.0, 801.0, 85.0, 801.0, 85.0, 728.0" coords2="71.0, 728.0, 71.0, 801.0, 85.0, 801.0, 85.0, 728.0" shape="poly" alt="No:Control Flow" id="areadiagram_map_l.LnsKGGAqACEgu6_default" href="ControlFlow_2_LnsKGGAqACEgu5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="248.0, 818.09033, 117.0, 818.9355, 117.0, 818.9355, 117.0, 832.9355, 117.0, 832.9355, 248.0, 832.09033, 248.0, 832.09033, 248.0, 818.09033" coords2="248.0, 818.09033, 117.0, 818.9355, 117.0, 818.9355, 117.0, 832.9355, 117.0, 832.9355, 248.0, 832.09033, 248.0, 832.09033, 248.0, 818.09033" shape="poly" alt=":Control Flow" id="areadiagram_map_n8HnsKGGAqACEgvO_default" href="ControlFlow_98HnsKGGAqACEgvN.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="260.0, 855.0, 260.0, 932.0, 274.0, 932.0, 274.0, 855.0" coords2="260.0, 855.0, 260.0, 932.0, 274.0, 932.0, 274.0, 855.0" shape="poly" alt="Yes:Control Flow" id="areadiagram_map_29HScKGGAqACEhfS_default" href="ControlFlow_29HScKGGAqACEhfR.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="260.0, 102.0, 260.0, 162.0, 274.0, 162.0, 274.0, 102.0" coords2="260.0, 102.0, 260.0, 162.0, 274.0, 162.0, 274.0, 102.0" shape="poly" alt=":Control Flow" id="areadiagram_map_R0C.dGGGAqACCRxm_default" href="ControlFlow_G0C_dGGGAqACCRxl.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="260.0, 202.0, 260.0, 273.0, 274.0, 273.0, 274.0, 202.0" coords2="260.0, 202.0, 260.0, 273.0, 274.0, 273.0, 274.0, 202.0" shape="poly" alt=":Control Flow" id="areadiagram_map_1qQBdGGGAqACCRym_default" href="ControlFlow_hqQBdGGGAqACCRyl.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="259.0, 313.0, 259.0, 384.0, 273.0, 384.0, 273.0, 313.0" coords2="259.0, 313.0, 259.0, 384.0, 273.0, 384.0, 273.0, 313.0" shape="poly" alt=":Control Flow" id="areadiagram_map_gPCBdGGGAqACCRzQ_default" href="ControlFlow_n3CBdGGGAqACCRzP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="259.13333, 442.0, 259.86667, 541.0, 273.86667, 541.0, 273.13333, 442.0" coords2="259.13333, 442.0, 259.86667, 541.0, 273.86667, 541.0, 273.13333, 442.0" shape="poly" alt="No:Control Flow" id="areadiagram_map_YiJBdGGGAqACCR0T_default" href="ControlFlow_vCJBdGGGAqACCR0S.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="99.0, 313.0, 99.0, 406.0, 96.0, 406.0, 96.0, 420.0, 99.0, 420.0, 99.0, 423.0, 113.0, 423.0, 113.0, 420.0, 246.0, 420.0, 246.0, 406.0, 113.0, 406.0, 113.0, 313.0" coords2="99.0, 313.0, 99.0, 406.0, 96.0, 406.0, 96.0, 420.0, 99.0, 420.0, 99.0, 423.0, 113.0, 423.0, 113.0, 420.0, 246.0, 420.0, 246.0, 406.0, 113.0, 406.0, 113.0, 313.0" shape="poly" alt="Yes:Control Flow" id="areadiagram_map_mkyhdGGGAqACCR2l_default" href="ControlFlow_CkyhdGGGAqACCR2k.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="99.0, 172.0, 99.0, 175.0, 96.0, 175.0, 96.0, 189.0, 99.0, 189.0, 99.0, 273.0, 113.0, 273.0, 113.0, 189.0, 216.0, 189.0, 216.0, 175.0, 113.0, 175.0, 113.0, 172.0" coords2="99.0, 172.0, 99.0, 175.0, 96.0, 175.0, 96.0, 189.0, 99.0, 189.0, 99.0, 273.0, 113.0, 273.0, 113.0, 189.0, 216.0, 189.0, 216.0, 175.0, 113.0, 175.0, 113.0, 172.0" shape="poly" alt=":Control Flow" id="areadiagram_map_r.thdGGGAqACCR4K_default" href="ControlFlow_N_thdGGGAqACCR4J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="61, 273, 151, 313" coords2="61, 273, 151, 313" shape="rect" alt="Reset:Action" id="areadiagram_map_pachdGGGAqACCR2O_default" href="ActivityAction_pachdGGGAqACCR2P.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="246, 384, 286, 442" coords2="246, 384, 286, 442" shape="rect" alt="Want to restart?:Decision Node" id="areadiagram_map_x3CBdGGGAqACCRzJ_default" href="DecisionNode_x3CBdGGGAqACCRzK.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="216, 162, 319, 202" coords2="216, 162, 319, 202" shape="rect" alt="Start questionnaire:Action" id="areadiagram_map_jevedGGGAqACCRw9_default" href="ActivityAction_jevedGGGAqACCRw_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="257, 932, 277, 952" coords2="257, 932, 277, 952" shape="rect" alt=":Activity Final Node" id="areadiagram_map_NRUXsKGGAqACEgwW_default" href="ActivityFinalNode_tRUXsKGGAqACEgwX.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="40, 801, 117, 841" coords2="40, 801, 117, 841" shape="rect" alt="Skip question:Action" id="areadiagram_map_5eLnsKGGAqACEguz_default" href="ActivityAction_5eLnsKGGAqACEgu0.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="59, 668, 97, 728" coords2="59, 668, 97, 728" shape="rect" alt="Want to answer?:Decision Node" id="areadiagram_map_HC2HsKGGAqACEgrw_default" href="DecisionNode_3C2HsKGGAqACEgrx.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="248, 541, 286, 601" coords2="248, 541, 286, 601" shape="rect" alt="Required question?:Decision Node" id="areadiagram_map_HB_7sKGGAqACEgp7_default" href="DecisionNode_HB_7sKGGAqACEgp8.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="218, 273, 317, 313" coords2="218, 273, 317, 313" shape="rect" alt="See question:Action" id="areadiagram_map_pC95fyGGAqACEg3D_default" href="ActivityAction_ZC95fyGGAqACEg3E.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="248, 795, 286, 855" coords2="248, 795, 286, 855" shape="rect" alt="Questionnaire finished?:Decision Node" id="areadiagram_map_9895fyGGAqACEg22_default" href="DecisionNode_9895fyGGAqACEg23.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="227, 678, 319, 718" coords2="227, 678, 319, 718" shape="rect" alt="Answer question:Action" id="areadiagram_map_zhvZfyGGAqACEg0m_default" href="ActivityAction_zhvZfyGGAqACEg0n.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="212, 62, 322, 102" coords2="212, 62, 322, 102" shape="rect" alt="Select questionnaire:Action" id="areadiagram_map_vcDZfyGGAqACEg0Z_default" href="ActivityAction_fcDZfyGGAqACEg0a.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="247, 2, 287, 22" coords2="247, 2, 287, 22" shape="rect" alt=":Initial Node" id="areadiagram_map_TnRZfyGGAqACEg0O_default" href="InitialNode_TnRZfyGGAqACEg0P.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_pachdGGGAqACCR2P.html" class="ItemLink">Reset : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/DecisionNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/DecisionNode.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="DecisionNode_x3CBdGGGAqACCRzK.html" class="ItemLink">Want to restart? : Decision Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_jevedGGGAqACCRw_.html" class="ItemLink">Start questionnaire : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/ActivityFinial.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/ActivityFinial.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityFinalNode_tRUXsKGGAqACEgwX.html" class="ItemLink">N/A : Activity Final Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_5eLnsKGGAqACEgu0.html" class="ItemLink">Skip question : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/DecisionNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/DecisionNode.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="DecisionNode_3C2HsKGGAqACEgrx.html" class="ItemLink">Want to answer? : Decision Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/DecisionNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/DecisionNode.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="DecisionNode_HB_7sKGGAqACEgp8.html" class="ItemLink">Required question? : Decision Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_ZC95fyGGAqACEg3E.html" class="ItemLink">See question : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/DecisionNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/DecisionNode.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="DecisionNode_9895fyGGAqACEg23.html" class="ItemLink">Questionnaire finished? : Decision Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_zhvZfyGGAqACEg0n.html" class="ItemLink">Answer question : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_fcDZfyGGAqACEg0a.html" class="ItemLink">Select questionnaire : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/InitialNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/InitialNode.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InitialNode_TnRZfyGGAqACEg0P.html" class="ItemLink">N/A : Initial Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		SoftEng22-77	</div>
+</body>
+</html>
