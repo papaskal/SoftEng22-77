@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 import Stack from 'react-bootstrap/Stack'
 
 
-function SkippableQuestion({ question, submit, skip, reset }) {
+function SurveyQuestion({ question, submit, skip, reset }) {
     const [choice, setChoice] = useState(null)
 
     const choose = (ans) => {
@@ -36,4 +36,4 @@ function SkippableQuestion({ question, submit, skip, reset }) {
     )
 }
 
-export default SkippableQuestion
+export default SurveyQuestion
