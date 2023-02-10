@@ -7,5 +7,5 @@
 
 Χρήσιμη εντολή για την αρχικοποίηση της βάσης είναι το [mongorestore](https://www.mongodb.com/docs/v4.2/reference/program/mongorestore/).
 ```
-mongorestore --db intelliq --drop "/db_dumps/bson/"
+mongorestore --db intelliq --drop "./db_dumps/bson/"
 ```
