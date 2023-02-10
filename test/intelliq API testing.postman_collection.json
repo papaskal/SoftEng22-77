@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "ce242e33-c4f0-49cc-84fc-bb470d3c7e8f",
 		"name": "intelliq API testing",
-		"description": "Αυτή συλλογή αποτελεί μια σειρά από test, προκειμένου να επιβεβαιωθεί η σωστή λειτουργία όλων των πτυχών του API.  \nΠριν από το τρέξιμο των test, η βάση πρέπει να αρχικοποιηθεί με τα [κατάλληλα δεδομένα](https://github.com/ntua/SoftEng22-77/tree/main/data/dumps).\n\nΕπίσης, το Postman working directory πρέπει να περιέχει το φάκελο [questionnaires](https://github.com/ntua/SoftEng22-77/tree/main/data/questionnaire_upd%20files/questionnaires).",
+		"description": "Αυτή συλλογή αποτελεί μια σειρά από test, προκειμένου να επιβεβαιωθεί η σωστή λειτουργία όλων των πτυχών του [API](https://documenter.getpostman.com/view/23942102/2s935mtRK8).\n\nΠριν από το τρέξιμο των tests, η βάση πρέπει να αρχικοποιηθεί με τα [κατάλληλα δεδομένα](https://github.com/ntua/SoftEng22-77/tree/main/data/db_dumps).  \nΑυτό πρέπει να γίνεται πριν από **κάθε** iteration.\n\nΕπίσης, το Postman working directory πρέπει να περιέχει το φάκελο [questionnaires](https://github.com/ntua/SoftEng22-77/tree/main/data/questionnaires).\n\nΗ διαδικασία αρχικοποίησης περιγράφεται [εδώ](https://github.com/ntua/SoftEng22-77/tree/main/data).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23942102"
 	},
@@ -3106,7 +3106,9 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					""
+					"pm.test(\"Response time is less than 500ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(500);",
+					"});"
 				]
 			}
 		}
