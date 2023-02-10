@@ -1,39 +1,39 @@
 import { useParams } from "react-router-dom"
 import { getquestionnaire, getquestion, submitanswers } from "../api"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import QuestionnaireCover from "./QuestionnaireCover"
 import SurveyQuestion from "./SurveyQuestion"
 import QuestionnaireFinal from "./QuestionnaireFinal"
 import Container from "react-bootstrap/esm/Container"
+import ConfirmationPage from "./ConfirmationPage"
+
 
 function Survey() {
     const { questionnaireID } = useParams()
 
     const [questionnaire, setQuestionnaire] = useState({})
-    const [answers, setAnswers] = useState([])
     const [currentQuestion, setCurrentQuestion] = useState(null)
     const [finished, setFinished] = useState(false)
 
-
-    const fetchQuestionnaire = async (questionnaireID) => {
-        const res = await getquestionnaire(questionnaireID)
-        setQuestionnaire(res.data)
-    }
-
+    const answers = useRef([])
+    const answeredQuestions = useRef([])
+  
 
     // The first time this component is rendered, fetch the questionnaire
     useEffect(() => {
+        const fetchQuestionnaire = async (questionnaireID) => {
+            const res = await getquestionnaire(questionnaireID)
+            setQuestionnaire(res.data)
+        }
+
         fetchQuestionnaire(questionnaireID)
     }, [])
 
 
-    // If finished, then submit all the answers to the server, and then cleanup
+    // If finished, then submit all the answers to the server
     useEffect(() => {
-        if (finished && currentQuestion) {
-            submitanswers(questionnaireID, { "answers": answers })
-        }
-        return function cleanup() {
-            if (finished) setCurrentQuestion(null)
+        if (finished) {
+            submitanswers(questionnaireID, { "answers": answers.current })
         }
     }, [finished])
 
@@ -41,14 +41,15 @@ function Survey() {
     // User clicked the submit button, to submit an answer
     const submit = async (ans) => {
         if (ans === null) return
-
-        // Save answer
-        setAnswers([...answers, { questionID: currentQuestion.qID, optionID: ans.optID }])
+        
+        // Save answer, in order to submit to server when questionnaire is finished
+        answers.current.push({ questionID: currentQuestion.qID, optionID: ans.optID })
+        // Save question and answer text, in order to display them when questionnaire is over
+        answeredQuestions.current.push({ question: currentQuestion.qtext, answer: ans.opttxt })
 
         // If the nextqID == '-', then the questionnaire is over
         if (ans.nextqID === '-') {
-
-            finish()
+            finalConfirmation()
             return
         }
 
@@ -65,7 +66,7 @@ function Survey() {
 
         // If this was the last question of the questionnaire, then the questionnaire is over
         if (ind >= questions.length - 1) {
-            finish()
+            finalConfirmation()
             return
         }
 
@@ -77,7 +78,8 @@ function Survey() {
 
     // User clicked the reset button, to start over the questionnaire
     const reset = () => {
-        setAnswers([])
+        answers.current = []
+        answeredQuestions.current = []
         setFinished(false)
         setCurrentQuestion(null)
     }
@@ -90,8 +92,13 @@ function Survey() {
         setCurrentQuestion(res.data)
     }
 
+    
+    const finalConfirmation = async () => {
+        setCurrentQuestion('-')
+    }
 
-    // Questionnaire has reached the end
+
+    // Questionnaire is finished, answers will be submitted to server
     const finish = async () => {
         setFinished(true)
     }
@@ -99,13 +106,22 @@ function Survey() {
 
     return (
         <Container>
-
             <div>
                 {finished
+                    // If questionnaire is finished, display final page
                     ? < QuestionnaireFinal />
                     : (!currentQuestion
+                        
+                        // If current question is null, then questionnaire has not started, so display cover page
                         ? < QuestionnaireCover questionnaire={questionnaire} start={start} />
-                        : < SurveyQuestion question={currentQuestion} submit={submit} skip={skip} reset={reset} />
+                        : (currentQuestion === '-'
+                            
+                            // If current question is '-', then display confirmation page, so that the user can finalize their answers
+                            ? < ConfirmationPage answeredQuestions={answeredQuestions.current} finish={finish} reset={reset} />
+
+                            // Display question page
+                            : < SurveyQuestion question={currentQuestion} submit={submit} skip={skip} reset={reset} />
+                        )
                     )
                 }
             </div>

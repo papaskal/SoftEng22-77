@@ -22,9 +22,11 @@ function SurveyQuestion({ question, submit, skip, reset }) {
                         {question.qtext}
                     </Card.Title>
                     {question.options.length === 1
-                        ? < TextAnswer choose={(text) => choose({ optID: text, nextqID: question.options[0].nextqID })} />
+                        // If there is only a single option, then expect an <open string> as an answer
+                        ? < TextAnswer choose={(text) => choose({ optID: text, opttxt: text, nextqID: question.options[0].nextqID })} />
                         : < RadioAnswer options={question.options} choose={choose} />
                     }
+                    
                     <Stack direction="horizontal" gap={3} className='p-3 m-3'>
                         <div>{question.required.toUpperCase() === 'FALSE' && (<Button onClick={skip}>Skip</Button>)} </div>
                         <div><Button disabled={!choice || (choice.optID === '')} onClick={() => { submit(choice); setChoice(null) }}>Submit</Button></div>
