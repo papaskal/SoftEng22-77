@@ -1,0 +1,813 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "intelliqAPI",
+    "description" : "To intelliq API είναι ένα REST API που υποστηρίζει λειτουργίες διαχείρισης της δομής έξυπνων ερωτηματολογίων, λήψης, καταχώρησης και εξαγωγής απαντήσεων.",
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/admin/deletequestionnaire/:questionnaireID" : {
+      "delete" : {
+        "description" : "Διαγραφή του ερωτηματολογίου με ταυτοποίηση questionnaireID.",
+        "operationId" : "delete_questionnaire",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Questionnaire does not exist\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/healthcheck" : {
+      "get" : {
+        "description" : "Επιβεβαίωση της συνδεσιμότητας (end-to-end connectivity) μεταξύ του χρήστη και της βάσης δεδομένων.",
+        "operationId" : "healthcheck",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/HealthcheckResponse"
+                },
+                "example" : "{\r\n  \"status\": \"OK\",\r\n  \"dbconnection\": \"MongoDB database connected\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/questionnaire_upd" : {
+      "post" : {
+        "description" : "Aνέβασμα αρχείου JSON με δεδομένα ενός νέου ερωτηματολογίου.\n\nΣτην http κλήση το αρχείο πρέπει να είναι κωδικοποιημένο ως πεδίο \"file\" σε multipart/form-data κωδικοποίηση.",
+        "operationId" : "add_questionnaire",
+        "parameters" : [ {
+          "name" : "file",
+          "in" : "formData",
+          "description" : "Το ερωτηματολόγιο ως JSON αρχείο.\n\nΗ απαιτούμενη δομή του αρχείου JSON είναι η ακόλουθη:\n\nΠεδίο\n\nΤύπος\n\nΠεριγραφή\n\nquestionnaireID\n\nString\n\nΤο αναγνωριστικό του ερωτηματολογίου\n\nquestionnaireTitle\n\nString\n\nΟ τίτλος του ερωτηματολογίου\n\nkeywords\n\nList\n\nΛίστα με λέξεις-κλειδιά. Κάθε λέξη-κλειδί είναι ένα string\n\nquestions\n\nList\n\nΛίστα με ερωτήσεις. Για κάθε ερώτηση, ένα JSON object που περιέχει τα ακόλουθα (qID, qtext, required, type, options) :\n\n    qID\n\nString\n\nΤο αναγνωριστικό της ερώτησης\n\n    qtext\n\nString\n\nΤο κείμενο της ερώτησης\n\n    required\n\nString\n\n\"TRUE\" ή \"FALSE\"\n\n    type\n\nString\n\n\"question\" ή \"profile\"\n\n    options\n\nList\n\nΛίστα με τις επιλογές. Για κάθε επιλογή, ένα JSON object με τα ακόλουθα (optID, opttxt, nextqID) :\n\n         optID\n\nString\n\nΤο αναγνωριστικό της απάντησης\n\n         opttxt\n\nString\n\nΤο κείμενο της απάντησης\n\n         nextqID\n\nString\n\nΤο αναγνωριστικό της επόμενης ερώτησης\n\n \n\n\n\nΓια το αρχείο JSON πρέπει επιπλέον να ισχύουν τα ακόλουθα:\n\nΤο αναγνωριστικό της κάθε ερώτησης πρέπει να είναι μοναδικό.\n\nΤο αναγνωριστικό μιας ερώτησης δεν μπορεί να είναι \"-\".\n\nΓια όλες τις επιλογές της τελευταίας ερώτησης, το αναγνωριστικό της επόμενης ερώτησης πρέπει να είναι \"-\".\n\nΓια όλες τις επιλογές οποιασδήποτε ερώτησης, το αναγνωριστικό της επόμενης ερώτησης πρέπει να αντιστοιχεί σε ερώτηση που είναι πιο μετά στη λίστα.\n\nΟι ερωτήσεις πρέπει να είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.\n\nΓια οποιαδήποτε ερώτηση, το αναγνωριστικό της κάθε επιλογής πρέπει να είναι μοναδικό.\n\nΓια οποιαδήποτε ερώτηση, οι επιλογές πρέπει να είναι ταξινομημένες ως προς το αναγνριστικό της επιλογής.\n\n \n\n \n\n ",
+          "required" : true,
+          "schema" : {
+            "format" : "Questionnaire"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"No file sent\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/resetall" : {
+      "post" : {
+        "description" : "Αρχικοποίηση όλων των δεδομένων του συστήματος, δηλαδή ερωτηματολόγια και απαντήσεις.",
+        "operationId" : "reset_all",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Success"
+                },
+                "example" : "{\r\n  \"status\": \"OK\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/resetq/:questionnaireID" : {
+      "post" : {
+        "description" : "Διαγραφή όλων των απαντήσεων του ερωτηματολογίου με ταυτοποίηση questionnaireID.",
+        "operationId" : "reset_questionnaire",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Success"
+                },
+                "example" : "{\r\n  \"status\": \"OK\"\r\n}"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Questionnaire does not exist\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/allquestionnaires" : {
+      "get" : {
+        "description" : "Επιστροφή object με λίστα που περιέχει τα βασικά στοιχεία όλων των ερωτηματολογίων, ταξινομημένα ως προς την ημερομηνία δημιουργίας τους. \n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+        "operationId" : "get_all_questionnaires",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetAllQuestionnairesResponse"
+                },
+                "example" : "{\r\n  \"questionnaires\": [\r\n    {\r\n      \"questionnaireID\": \"QQ001\",\r\n      \"questionnaireTitle\": \"Εκπαίδευση και καριέρα\"\r\n    },\r\n    {\r\n      \"questionnaireID\": \"QQ000\",\r\n      \"questionnaireTitle\": \"My first research questionnaire\"\r\n    },\r\n    {\r\n      \"questionnaireID\": \"QQ003\",\r\n      \"questionnaireTitle\": \"Χόμπι\"\r\n    },\r\n    {\r\n      \"questionnaireID\": \"QQ004\",\r\n      \"questionnaireTitle\": \"Οθόνες\"\r\n    }\r\n  ]\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/allsessions/:questionnaireID" : {
+      "get" : {
+        "description" : "Επιστροφή object με λίστα που περιέχει όλα τα session που αντισοιχούν σε γεγονάτα απάντησης του ερωτηματολογίου με ταυτοποίηση questionnaireID, ταξινομημένα ως προς το αναγνωριστικό γεγονότος απάντησης.",
+        "operationId" : "get_all_sessions",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetAllSessionsResponse"
+                },
+                "example" : "{\r\n  \"sessions\": [\r\n    \"3YCF\",\r\n    \"3mPs\",\r\n    \"FWkB\",\r\n    \"Fpmz\",\r\n    \"JQcv\",\r\n    \"P0lM\",\r\n    \"R5pr\",\r\n    \"VQyy\",\r\n    \"ir2u\",\r\n    \"nj3u\",\r\n    \"pR3L\",\r\n    \"sqrB\"\r\n  ]\r\n}"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doanswer/:questionnaireID/:questionID/:session/:optionID" : {
+      "post" : {
+        "description" : "Καταχώρηση της απάντησης optionID η οποία δόθηκε στο γεγονός απάντησης session στην ερώτηση questionID του ερωτηματολογίου questionnaireID. Το αναγνωριστικό session είναι μια συμβολοσειρά με 4 τυχαίους χαρακτήρες που αντιστοιχούν στο γεγονός απάντησης του ερωτηματολογίου από κάποιον χρήστη. \n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+        "operationId" : "do_answer",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "questionID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό της ερώτησης",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "session",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του γεγονότος απάντησης",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "optionID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό της απάντησης",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Option does not exist\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getquestionanswers/:questionnaireID/:questionID" : {
+      "get" : {
+        "description" : "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλα τα γεγονότα απάντησης, στην ερώτηση questionID. Οι απαντήσεις είναι ταξινομημένες ως προς τη σειράμε την οποία δόθηκαν. \n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+        "operationId" : "get_question_answers",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "questionID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό της ερώτησης",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "Εάν έχει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetQuestionAnswersResponse"
+                },
+                "example" : "{\r\n  \"questionnaireID\": \"QQ001\",\r\n  \"questionID\": \"Q01\",\r\n  \"answers\": [\r\n    {\r\n      \"session\": \"nj3u\",\r\n      \"ans\": \"Q01A1\"\r\n    },\r\n    {\r\n      \"session\": \"10KK\",\r\n      \"ans\": \"Q01A2\"\r\n    },\r\n    {\r\n      \"session\": \"en78\",\r\n      \"ans\": \"Q01A1\"\r\n    },\r\n    {\r\n      \"session\": \"J9YD\",\r\n      \"ans\": \"Q01A2\"\r\n    }\r\n  ]\r\n}"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Question does not exist\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getsessionanswers/:questionnaireID/:session" : {
+      "get" : {
+        "description" : "Επιστροφή object που περιέχει τις απαντήσεις που δόθηκαν σε όλες τις ερωτήσεις του ερωτηματολογίου questionnaireID κατά το γεγονός απάντησης session. Οι απαντήσεις είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης. \n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+        "operationId" : "get_session_answers",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "session",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του γεγονότος απάντησης",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "Εάν έχει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetSessionAnswersResponse"
+                },
+                "example" : "{\r\n  \"questionnaireID\": \"QQ001\",\r\n  \"session\": \"10KK\",\r\n  \"answers\": [\r\n    {\r\n      \"qID\": \"P01\",\r\n      \"ans\": \"Αθήνα\"\r\n    },\r\n    {\r\n      \"qID\": \"P02\",\r\n      \"ans\": \"P02A1\"\r\n    },\r\n    {\r\n      \"qID\": \"Q01\",\r\n      \"ans\": \"Q01A2\"\r\n    },\r\n    {\r\n      \"qID\": \"Q06\",\r\n      \"ans\": \"Q06A1\"\r\n    },\r\n    {\r\n      \"qID\": \"Q07\",\r\n      \"ans\": \"Q07A1\"\r\n    },\r\n    {\r\n      \"qID\": \"Q08\",\r\n      \"ans\": \"Q08A1\"\r\n    },\r\n    {\r\n      \"qID\": \"Q11\",\r\n      \"ans\": \"Q11A2\"\r\n    }\r\n  ]\r\n}"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Session does not exist\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/question/:questionnaireID/:questionID" : {
+      "get" : {
+        "description" : "Επιστροφή object που περιέχει τα πλήρη στοιχεία της ερώτησης questionID του ερωτηματολογίου questionnaireID. Οι επιλογές της ερώτησης (απαντήσεις) είναι ταξινομημένες ως προς το αναγνωριστικό της απάντησης. \n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+        "operationId" : "get_question",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "questionID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό της ερώτησης",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "Εάν έχει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetQuestionResponse"
+                },
+                "example" : "{\r\n  \"questionnaireID\": \"QQ001\",\r\n  \"qID\": \"Q01\",\r\n  \"qtext\": \"Πηγαίνετε σχολείο;\",\r\n  \"required\": \"TRUE\",\r\n  \"type\": \"question\",\r\n  \"options\": [\r\n    {\r\n      \"optID\": \"Q01A1\",\r\n      \"opttxt\": \"Ναι\",\r\n      \"nextqID\": \"Q02\"\r\n    },\r\n    {\r\n      \"optID\": \"Q01A2\",\r\n      \"opttxt\": \"Όχι\",\r\n      \"nextqID\": \"Q06\"\r\n    }\r\n  ]\r\n}"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Questionnaire does not exist\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/questionnaire/:questionnaireID" : {
+      "get" : {
+        "description" : "Επιστροφή object που περιέχει τα γενικά στοιχεία και τις ερωτήσεις του ερωτηματολογίου με αναγνωριστικό questionnaireID, ταξινομημένες ως προς το αναγνωριστικό της ερώτησης. \n\nΕάν η προαιρετική query παράμετρος \"format\" λάβει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+        "operationId" : "get_questionnaire",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "description" : "Εάν έχει την τιμή \"csv\", τότε η απάντηση έχει μορφή csv, και όχι JSON object.",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetQuestionnaireResponse"
+                },
+                "example" : "{\r\n  \"questionnaireID\": \"QQ001\",\r\n  \"questionnaireTitle\": \"Εκπαίδευση και καριέρα\",\r\n  \"keywords\": [\r\n    \"εκπαίδευση\",\r\n    \"εργασία\",\r\n    \"σπουδές\"\r\n  ],\r\n  \"questions\": [\r\n    {\r\n      \"qID\": \"P01\",\r\n      \"qtext\": \"Σε ποια πόλη κατοικείτε;\",\r\n      \"required\": \"FALSE\",\r\n      \"type\": \"profile\"\r\n    },\r\n    {\r\n      \"qID\": \"P02\",\r\n      \"qtext\": \"Ποια είναι ηλικία σας\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"profile\"\r\n    },\r\n    {\r\n      \"qID\": \"Q01\",\r\n      \"qtext\": \"Πηγαίνετε σχολείο;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q02\",\r\n      \"qtext\": \"Πηγαίνετε σε ιδιωτικό ή δημόσιο σχολείο;\",\r\n      \"required\": \"FALSE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q03\",\r\n      \"qtext\": \"Σε ποια βαθμίδα εκπαίδευσης βρίσκεστε;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q04\",\r\n      \"qtext\": \"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχει το σχολείο σας;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q05\",\r\n      \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με το σχολείο σας;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q06\",\r\n      \"qtext\": \"Σπουδάζετε αυτή τη στιγμή σε κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q07\",\r\n      \"qtext\": \"Σε τι είδους ίδρυμα σπουδάζετε;\",\r\n      \"required\": \"FALSE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q08\",\r\n      \"qtext\": \"Πόσο ευχαριστημένος είστε με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q09\",\r\n      \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με το επίπεδο εκπαίδευσης που σας παρέχεται;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q10\",\r\n      \"qtext\": \"Έχετε αποφοιτήσει επιτυχώς από κάποιο ίδρυμα τριτοβάθμιας εκπαίδευσης ή ΙΕΚ;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q11\",\r\n      \"qtext\": \"Εργάζεστε;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q12\",\r\n      \"qtext\": \"Το αντικείμενο της εργασίας σας σχετίζεται με το αντικείμενο των σπουδών σας;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q13\",\r\n      \"qtext\": \"Εργάζεστε;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q14\",\r\n      \"qtext\": \"Ποιο είναι το επάγγελμά σας;\",\r\n      \"required\": \"FALSE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q15\",\r\n      \"qtext\": \"Πόσο ευχαριστημένος είστε με τις συνθήκες της εργασία σας;\",\r\n      \"required\": \"TRUE\",\r\n      \"type\": \"question\"\r\n    },\r\n    {\r\n      \"qID\": \"Q16\",\r\n      \"qtext\": \"Γιατί δεν είστε ευχαριστημένος με την εργασία σας;\",\r\n      \"required\": \"FALSE\",\r\n      \"type\": \"question\"\r\n    }\r\n  ]\r\n}"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Questionnaire does not exist\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submitanswers/:questionnaireID" : {
+      "post" : {
+        "description" : "Καταχώρηση object με λίστα απαντήσεων για ένα ερωτηματολογίο με ταυτοποίηση questionnaireID. \n\nΟι απαντήσεις πρέπει να είναι ταξινομημένες ως προς το αναγνωριστικό της ερώτησης.",
+        "operationId" : "submit_answers",
+        "parameters" : [ {
+          "name" : "questionnaireID",
+          "in" : "path",
+          "description" : "Το αναγνωριστικό του ερωτηματολογίου",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "x-codegen-request-body-name" : "submitanswersrequest",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SubmitAnswersRequest"
+              },
+              "example" : "{\r\n    \"answers\": [\r\n        {\r\n            \"questionID\": \"P01\",\r\n            \"optionID\": \"Αθήνα\"\r\n        },\r\n        {\r\n            \"questionID\": \"P02\",\r\n            \"optionID\": \"P02A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q01\",\r\n            \"optionID\": \"Q01A2\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q06\",\r\n            \"optionID\": \"Q06A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q07\",\r\n            \"optionID\": \"Q07A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q08\",\r\n            \"optionID\": \"Q08A1\"\r\n        },\r\n        {\r\n            \"questionID\": \"Q11\",\r\n            \"optionID\": \"Q11A2\"\r\n        }\r\n    ]\r\n}"
+            }
+          },
+          "required" : false
+        },
+        "responses" : {
+          "204" : {
+            "description" : "No Content"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Invalid data\"\r\n}"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                },
+                "example" : "{\r\n  \"status\": \"failed\",\r\n  \"reason\": \"Something went wrong\"\r\n}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "HealthcheckResponse" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "\"OK\" ή \"failed\""
+          },
+          "dbconnection" : {
+            "type" : "string",
+            "description" : "Πληροφορία για τη βάση"
+          }
+        }
+      },
+      "GetAllQuestionnairesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "questionnaires" : {
+            "type" : "list",
+            "description" : "Λίστα με ερωτηματολόγια"
+          }
+        }
+      },
+      "GetSessionAnswersResponse" : {
+        "type" : "object",
+        "properties" : {
+          "questionnaireID" : {
+            "type" : "string",
+            "description" : "Το αναγνωριστικό του ερωτηματολογίου"
+          },
+          "session" : {
+            "type" : "string",
+            "description" : "Το αναγνωριστικό του γεγονότος απάντησης"
+          },
+          "answers" : {
+            "type" : "list",
+            "description" : "Λίστα με απαντήσεις"
+          }
+        }
+      },
+      "Success" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "\"OK\""
+          }
+        }
+      },
+      "GetAllSessionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "sessions" : {
+            "type" : "list",
+            "description" : "Λίστα από αναγνωριστικά γεγονότος απάντησης"
+          }
+        }
+      },
+      "SubmitAnswersRequest" : {
+        "type" : "object",
+        "properties" : {
+          "answers" : {
+            "type" : "list",
+            "description" : "Λίστα με απαντήσεις"
+          }
+        }
+      },
+      "GetQuestionAnswersResponse" : {
+        "type" : "object",
+        "properties" : {
+          "questionnaireID" : {
+            "type" : "string",
+            "description" : "Το αναγνωριστικό του ερωτηματολογίου"
+          },
+          "questionID" : {
+            "type" : "string",
+            "description" : "Το αναγνωριστικό της ερώτησης"
+          },
+          "answers" : {
+            "type" : "list",
+            "description" : "Λίστα με απαντήσεις"
+          }
+        }
+      },
+      "GetQuestionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "questionnaireID" : {
+            "type" : "string",
+            "description" : "Το αναγνωριστικό του ερωτηματολογίου"
+          },
+          "qID" : {
+            "type" : "string",
+            "description" : "Το αναγνωριστικό της ερώτησης"
+          },
+          "qtext" : {
+            "type" : "string",
+            "description" : "Το κείμενο της ερώτησης"
+          },
+          "required" : {
+            "type" : "string",
+            "description" : "\"TRUE\" ή \"FALSE\""
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "\"question\" ή \"profile\""
+          },
+          "options" : {
+            "type" : "list",
+            "description" : "Λίστα με τις επιλογές"
+          }
+        }
+      },
+      "Error" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string",
+            "description" : "\"failed\""
+          },
+          "reason" : {
+            "type" : "string",
+            "description" : "Λόγος αποτυχίας"
+          }
+        }
+      },
+      "GetQuestionnaireResponse" : {
+        "type" : "object",
+        "properties" : {
+          "questionnaireID" : {
+            "type" : "string",
+            "description" : "Το αναγνωριστικό του ερωτηματολογίου"
+          },
+          "questionnaireTitle" : {
+            "type" : "string",
+            "description" : "Ο τίτλος του ερωτηματολογίου"
+          },
+          "keywords" : {
+            "type" : "list",
+            "description" : "Λίστα με λέξεις-κλειδιά"
+          },
+          "questions" : {
+            "type" : "list",
+            "description" : "Λίστα με ερωτήσεις"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs" : {
+    "url" : "https://documenter.getpostman.com/view/23942102/2s935mtRK8",
+    "description" : "Postman documentation"
+  }
+}
